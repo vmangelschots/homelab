@@ -1,0 +1,15 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: olympus-mangelschots-org
+  namespace: default
+spec:
+  secretName: olympus-mangelschots-org-tls
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  commonName: "*.olympus.mangelschots.org"
+  dnsNames:
+  - "olympus.mangelschots.org"
+  - "*.olympus.mangelschots.org"

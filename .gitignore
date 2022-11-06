@@ -1,0 +1,2 @@
+cert-manager/issuers/secret-cf-token.yaml
+traefik/dashboard/secret-dashboard.yaml
