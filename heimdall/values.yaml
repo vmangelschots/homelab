@@ -32,11 +32,12 @@ portal:
   enabled: false
 
 ingress:
-  enabled: true
-  annotations:
-    kubernetes.io/ingress.class: "traefik-internal"
-  hosts:
-    host: "heimdall.olympus.mangelschots.org"
-  tls:
-    secretName: olympus-mangelschots-org-tls
+  main:
+    enabled: true
+    annotations:
+      kubernetes.io/ingress.class: "traefik-internal"
+    hosts:
+      host: "heimdall.olympus.mangelschots.org"
+    tls:
+      secretName: olympus-mangelschots-org-tls
 
