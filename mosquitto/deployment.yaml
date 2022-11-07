@@ -38,12 +38,10 @@ spec:
           value: "568" # < user "docker"
         - name: TZ
           value: Europe/Brussels
-      ports:                              # < the ports required (see container documentation)
-
-        - containerPort: 1883
-          name: mosquitto-1883
-          protocol: TCP
+        ports:                              # < the ports required (see container documentation)
+          - containerPort: 1883
+            name: mosquitto-1883
+            protocol: TCP
         volumeMounts:                       # < the volume mount in the container. Look at the relation volumelabel->pvc->pv
-         - mountPath: /config               # < mount location in the container
-           name: mosquito-config               # < volumelabel configured earlier in the yaml file
-           subPath: config                  # < subfolder in the nfs share to be mounted
+          - mountPath: /mosquitto               # < mount location in the container
+            name: mosquitto-config               # < volumelabel configured earlier in the yaml file
