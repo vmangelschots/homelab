@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ha-service    # < name of the service
+  namespace: ha       # < namespace where place the deployment and pods
+spec:
+  selector:
+    app: ha           # < reference to the deployment (connects with this deployment)
+  ports:
+    - name: http-8123
+      protocol: TCP
+      port: 8123

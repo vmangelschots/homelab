@@ -1,0 +1,19 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: ha-ingress
+  namespace: ha
+  annotations: 
+    kubernetes.io/ingress.class: traefik-exsternal
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`home.olympus.mangelschots.org`)
+      kind: Rule
+      services:
+        - name: ha-service
+          port: 8123
+  tls:
+    secretName: olympus-mangelschots-org-tls
