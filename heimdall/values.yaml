@@ -25,19 +25,23 @@ probes:
 persistence:
   config:
     enabled: true
-    type: "emptydir"
+    type: "emptyDir"
     mountPath: "/config"
 
 portal:
   enabled: false
 
 ingress:
-  main:
+  main: 
     enabled: true
     annotations:
-      kubernetes.io/ingress.class: "traefik-internal"
+      kubernetes.io/ingress.class: traefik-internal
     hosts:
-      host: "heimdall.olympus.mangelschots.org"
+      - host: 
+          heimdall.olympus.mangelschots.org
+        paths:
+          - path: /
+            pathType: Prefix
     tls:
-      secretName: olympus-mangelschots-org-tls
+      - secretName: olympus-mangelschots-org-tls
 
