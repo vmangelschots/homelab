@@ -22,7 +22,7 @@ spec:
     spec:
       volumes:
       - name: heimdall-config  # < linkname of the volume for the pvc
-        hostpath:
+        hostPath:
           path: /mnt/nfs/heimdall-config # < pvc name we created in the previous yaml
       - name: heimdall-ssl
         secret:

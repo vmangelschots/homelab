@@ -22,5 +22,5 @@ spec:
         - name: argocd-server
           port: 80
           scheme: h2c
-    tls:
-      secretName: olympus-mangelschots-org-tls
+  tls:
+    secretName: olympus-mangelschots-org-tls
