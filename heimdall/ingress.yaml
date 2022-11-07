@@ -1,16 +1,19 @@
-apiVersion: networking.k8s.io/v1beta1
-kind: Ingress
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
 metadata:
-  name: heimdall-ingress   # < name of ingress entry
-  namespace: heimdall      # < namespace where place the deployment and pods
-  annotations:
-    kubernetes.io/ingress.class: "traefik-internal"   # < use the nginx ingress controller
+  name: heimdall-ingress
+  namespace: heimdall
+  annotations: 
+    kubernetes.io/ingress.class: traefik-internal
 spec:
-  rules:
-  - host: heimdall.olympus.mangelschots.org  # < hostname to access the heimdall
-    http:
-      paths:
-      - path: /
-        backend:
-          serviceName: heimdall-service # < connect the ingress entry to service created earlier
-          servicePort: 80
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`heimdall.olympus.mangelschots.org`)
+      kind: Rule
+      services:
+        - name: heimdall-service
+          port: 80
+  tls:
+    secretName: olympus-mangelschots-org-tls
