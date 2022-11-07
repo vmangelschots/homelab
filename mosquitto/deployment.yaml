@@ -21,9 +21,12 @@ spec:
         app: mosquitto 
     spec:
       volumes:
-      - name: mosquitto-config  # < linkname of the volume for the pvc
+      - name: mosquitto-log  # < linkname of the volume for the pvc
         hostPath:
-          path: /mnt/k3s/mosquitto-config # < pvc name we created in the previous yaml
+          path: /mnt/k3s/mosquitto-log # < pvc name we created in the previous yaml
+      - name: mosquitto-data
+        hostPath:
+          path: /mnt/k3s/mosquitto-data
       - name: mosquitto-ssl
         secret:
           secretName: olympus-mangelschots-org-tls # < the name ssl certificate, will be created in the ingress yaml
@@ -43,5 +46,8 @@ spec:
             name: mosquitto-1883
             protocol: TCP
         volumeMounts:                       # < the volume mount in the container. Look at the relation volumelabel->pvc->pv
-          - mountPath: /mosquitto               # < mount location in the container
-            name: mosquitto-config               # < volumelabel configured earlier in the yaml file
+          - mountPath: /mosquitto/log               # < mount location in the container
+            name: mosquitto-log            # < volumelabel configured earlier in the yaml file
+        volumeMounts:                       # < the volume mount in the container. Look at the relation volumelabel->pvc->pv
+          - mountPath: /mosquitto/data # < mount location in the container
+            name: mosquitto-data            # < volumelabel configured earlier in the yaml file
