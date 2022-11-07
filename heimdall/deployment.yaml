@@ -23,7 +23,7 @@ spec:
       volumes:
       - name: heimdall-config  # < linkname of the volume for the pvc
         hostPath:
-          path: /mnt/nfs/heimdall-config # < pvc name we created in the previous yaml
+          path: /mnt/k3s/heimdall-config # < pvc name we created in the previous yaml
       - name: heimdall-ssl
         secret:
           secretName: olympus-mangelschots-org-tls # < the name ssl certificate, will be created in the ingress yaml
@@ -37,7 +37,7 @@ spec:
         - name: PUID
           value: "1041" # < user "docker"
         - name: TZ
-          value: Europe/Amsterdam
+          value: Europe/Brussels
         ports:                              # < the ports required (see container documentation)
          - containerPort: 80
            name: http-80
