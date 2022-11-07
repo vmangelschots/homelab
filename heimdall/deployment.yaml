@@ -35,7 +35,7 @@ spec:
         - name: PGID
           value: "100" # < group "user"
         - name: PUID
-          value: "1041" # < user "docker"
+          value: "568" # < user "docker"
         - name: TZ
           value: Europe/Brussels
         ports:                              # < the ports required (see container documentation)
