@@ -1,0 +1,19 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: uptime-ingress
+  namespace: uptime-kuma
+  annotations: 
+    kubernetes.io/ingress.class: traefik-internal
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`uptime.olympus.mangelschots.org`)
+      kind: Rule
+      services:
+        - name: uptime-kuma
+          port: 80
+  tls:
+    secretName: olympus-mangelschots-org-tls
