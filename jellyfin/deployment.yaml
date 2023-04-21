@@ -44,5 +44,5 @@ spec:
            protocol: TCP
         volumeMounts:                       # < the volume mount in the container. Look at the relation volumelabel->pvc->pv
          - mountPath: /config               # < mount location in the container
-           name: jellyfin-data               # < volumelabel configured earlier in the yaml file
+           name: jellyfin-config               # < volumelabel configured earlier in the yaml file
            subPath: config                  # < subfolder in the nfs share to be mounted
