@@ -1,0 +1,43 @@
+---
+- name: prep nodes
+  hosts: all
+  become: true
+
+  vars:
+    nfs_server: 172.21.0.4     # IP address of the NFS server
+    nfs_share: /mnt/large_pool/main_nfs    # NFS share to be mounted
+    mount_point: /mnt/main_nfs  # Local mount point on all nodes
+    fstab_entry: "{{ nfs_server }}:{{ nfs_share }} {{ mount_point }} nfs rw,noatime,nolock,hard,intr 0 0"
+
+  tasks:
+    - name: Install dependencies
+      apt:
+        pkg:
+          - nfs-common
+          - cifs-utils
+          - open-iscsi
+          - lsscsi
+          - sg3-utils
+          - multipath-tools
+          - scsitools
+        state: present
+
+    - name: Create mount point directory
+      file:
+        path: "{{ mount_point }}"
+        state: directory
+
+    - name: Mount NFS share
+      mount:
+        src: "{{ nfs_server }}:{{ nfs_share }}"
+        path: "{{ mount_point }}"
+        fstype: nfs
+        opts: rw,noatime,nolock,hard,intr
+        state: mounted
+
+    - name: Add entry to /etc/fstab
+      lineinfile:
+        path: /etc/fstab
+        line: "{{ fstab_entry }}"
+        state: present
+
