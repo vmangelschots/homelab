@@ -5,10 +5,11 @@
 
   vars:
     nfs_server: 172.21.0.4     # IP address of the NFS server
-    nfs_share: /mnt/large_pool/main_nfs    # NFS share to be mounted
-    mount_point: /mnt/main_nfs  # Local mount point on all nodes
-    fstab_entry: "{{ nfs_server }}:{{ nfs_share }} {{ mount_point }} nfs rw,noatime,nolock,hard,intr 0 0"
 
+    nfs_shares:
+      - { share: /mnt/large_pool/k3s, mount: /mnt/k3s }
+      - { share: /mnt/large_pool/series, mount: /mnt/series }
+      # Add more NFS shares here as needed
   tasks:
     - name: Install dependencies
       apt:
@@ -22,22 +23,24 @@
           - scsitools
         state: present
 
-    - name: Create mount point directory
+    - name: Create mount point directories
       file:
-        path: "{{ mount_point }}"
+        path: "{{ item.mount }}"
         state: directory
+      loop: "{{ nfs_shares }}"
 
-    - name: Mount NFS share
+    - name: Mount NFS shares
       mount:
-        src: "{{ nfs_server }}:{{ nfs_share }}"
-        path: "{{ mount_point }}"
+        src: "{{ nfs_server }}:{{ item.share }}"
+        path: "{{ item.mount }}"
         fstype: nfs
         opts: rw,noatime,nolock,hard,intr
         state: mounted
+      loop: "{{ nfs_shares }}"
 
-    - name: Add entry to /etc/fstab
+    - name: Add entries to /etc/fstab
       lineinfile:
         path: /etc/fstab
-        line: "{{ fstab_entry }}"
+        line: "{{ nfs_server }}:{{ item.share }} {{ item.mount }} nfs rw,noatime,nolock,hard,intr 0 0"
         state: present
-
+      loop: "{{ nfs_shares }}"
