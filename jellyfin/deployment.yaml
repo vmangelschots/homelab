@@ -25,7 +25,7 @@ spec:
         hostPath:
           path: /mnt/k3s/jellyfin-config # < pvc name we created in the previous yaml
       - name: jellyfin-series
-        hostpath:
+        hostPath:
           path: /mnt/series
       - name: jellyfin-ssl
         secret:
