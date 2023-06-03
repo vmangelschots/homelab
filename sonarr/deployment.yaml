@@ -20,9 +20,6 @@ spec:
       - name: sonarr-series
         hostPath:
           path: /mnt/series
-      - name: sonarr-movies
-        hostPath:
-          path: /mnt/movies
       - name: sonarr-downloads
         hostPath:
           path: /mnt/downloads
@@ -39,8 +36,6 @@ spec:
           name: sonarr-config
         - mountPath: /data/series
           name: sonarr-series
-        - mountPath: /data/movies
-          name: sonarr-movies
         - mountPath: /data/downloads
           name: sonarr-downloads 
         env:
