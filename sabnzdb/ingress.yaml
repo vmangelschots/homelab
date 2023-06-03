@@ -14,6 +14,6 @@ spec:
       kind: Rule
       services:
         - name: sabnzdb-service
-          port: 8096
+          port: 8080
   tls:
     secretName: olympus-mangelschots-org-tls
