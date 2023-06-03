@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sabnzdb        # < name of the deployment
+  namespace: sabnzdb   # < namespace where place the deployment and pods
+  labels:
+    app: sabnzdb      # < label for tagging and reference
+spec:
+  replicas: 1           # < number of pods to deploy
+  selector:
+    matchLabels:
+      app: sabnzdb
+  strategy:
+    rollingUpdate:
+      maxSurge: 0       # < The number of pods that can be created above the desired amount of pods during an update
+      maxUnavailable: 1 # < The number of pods that can be unavailable during the update process
+    type: RollingUpdate # < New pods are added gradually, and old pods are terminated gradually
+  template:
+    metadata:
+      labels:
+        app: sabnzdb
+    spec:
+      volumes:
+      - name: sabnzdb-config  # < linkname of the volume for the pvc
+        hostPath:
+          path: /mnt/k3s/sabnzdb-config # < pvc name we created in the previous yaml
+      - name: sabnzd-download
+        hostPath:
+          path: /mnt/downloads
+      - name: sabnzdb-ssl
+        secret:
+          secretName: olympus-mangelschots-org-tls # < the name ssl certificate, will be created in the ingress yaml
+      containers:
+      - image: lscr.io/linuxserver/sabnzbd:latest # < the name of the docker image we will use
+        name: sabnzdb                      # < name of container
+        imagePullPolicy: Always             # < always use the latest image when creating container/pod
+        env:                                # < the environment variables required (see container documentation)
+        - name: PGID
+          value: "3000" # < group "user"
+        - name: PUID
+          value: "3000" # < user "docker"
+        - name: TZ
+          value: Europe/Brussels
+        ports:                              # < the ports required (see container documentation)
+         - containerPort: 8080
+           name: webinterface
+           protocol: TCP
+        volumeMounts:                       # < the volume mount in the container. Look at the relation volumelabel->pvc->pv
+         - mountPath: /config               # < mount location in the container
+           name: sabnzdb-config               # < volumelabel configured earlier in the yaml file
+           subPath: config                  # < subfolder in the nfs share to be mounted
+         - mountPath: /downloads
+           name: sabnzdb-downloads
