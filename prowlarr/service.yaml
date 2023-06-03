@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: prowlarr-service    # < name of the service
+  namespace: prowlarr # < namespace where place the deployment and pods
+spec:
+  selector:
+    app: prowlarr # < reference to the deployment (connects with this deployment)
+  ports:
+    - name: webinterface
+      protocol: TCP
+      port: 8080

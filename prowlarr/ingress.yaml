@@ -1,0 +1,19 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: prowlarr-ingress
+  namespace: prowlarr
+  annotations: 
+    kubernetes.io/ingress.class: traefik-internal
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`prowlarr.olympus.mangelschots.org`)
+      kind: Rule
+      services:
+        - name: prowlarr-service
+          port: 8080
+  tls:
+    secretName: olympus-mangelschots-org-tls
