@@ -24,12 +24,9 @@ spec:
       - name: sabnzdb-config  # < linkname of the volume for the pvc
         hostPath:
           path: /mnt/k3s/sabnzdb-config # < pvc name we created in the previous yaml
-      - name: sabnzd-download
+      - name: sabnzd-downloads
         hostPath:
           path: /mnt/downloads
-      - name: sabnzdb-ssl
-        secret:
-          secretName: olympus-mangelschots-org-tls # < the name ssl certificate, will be created in the ingress yaml
       containers:
       - image: lscr.io/linuxserver/sabnzbd:latest # < the name of the docker image we will use
         name: sabnzdb                      # < name of container
