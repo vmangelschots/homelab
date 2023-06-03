@@ -1,27 +1,27 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: sonarr
+  name: prowlarr
 spec:
   selector:
     matchLabels:
-      app: sonarr
-      release: sonarr
+      app: prowlarr
+      release: prowlarr
   template:
     metadata:
       labels:
-        app: sonarr
-        release: sonarr
+        app: prowlarr
+        release: prowlarr
     spec:
       volumes:
       - name: prowlarr-config  # < linkname of the volume for the pvc
         hostPath:
-          path: /mnt/k3s/sonarr-config # < pvc name we created in the previous yaml
+          path: /mnt/k3s/prowlarr-config # < pvc name we created in the previous yaml
 
       containers:
       - image: linuxserver/prowlarr:latest
         imagePullPolicy: Always
-        name: sonarr
+        name: prowlarr
         ports:
         - containerPort: 8080
           name: http
