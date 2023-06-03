@@ -24,7 +24,7 @@ spec:
       - name: sabnzdb-config  # < linkname of the volume for the pvc
         hostPath:
           path: /mnt/k3s/sabnzdb-config # < pvc name we created in the previous yaml
-      - name: sabnzd-downloads
+      - name: sabnzdb-downloads
         hostPath:
           path: /mnt/downloads
       containers:
