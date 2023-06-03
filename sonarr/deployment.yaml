@@ -23,7 +23,7 @@ spec:
       - name: sonarr-movies
         hostPath:
           path: /mnt/movies
-            - name: sonarr-downloads
+      - name: sonarr-downloads
         hostPath:
           path: /mnt/downloads
       containers:
