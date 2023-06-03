@@ -2,18 +2,18 @@
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: jellyfin-ingress
-  namespace: jellyfin
+  name: sabnzdb-ingress
+  namespace: sabnzdb
   annotations: 
     kubernetes.io/ingress.class: traefik-internal
 spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`jellyfin.olympus.mangelschots.org`)
+    - match: Host(`sabnzdb.olympus.mangelschots.org`)
       kind: Rule
       services:
-        - name: jellyfin-service
+        - name: sabnzdb-service
           port: 8096
   tls:
     secretName: olympus-mangelschots-org-tls
