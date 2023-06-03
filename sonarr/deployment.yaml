@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sonarr
+spec:
+  selector:
+    matchLabels:
+      app: sonarr
+      release: sonarr
+  template:
+    metadata:
+      labels:
+        app: sonarr
+        release: sonarr
+    spec:
+      volumes:
+      - name: sonarr-config  # < linkname of the volume for the pvc
+        hostPath:
+          path: /mnt/k3s/sonarr-config # < pvc name we created in the previous yaml
+      - name: sonarr-series
+        hostPath:
+          path: /mnt/series
+      - name: sonarr-movies
+        hostPath:
+          path: /mnt/movies
+            - name: sonarr-downloads
+        hostPath:
+          path: /mnt/downloads
+      containers:
+      - image: linuxserver/sonarr:latest
+        imagePullPolicy: Always
+        name: sonarr
+        ports:
+        - containerPort: 8989
+          name: http
+          protocol: TCP
+        volumeMounts:
+        - mountPath: /config
+          name: sonarr-config
+        - mountPath: /data/series
+          name: sonarr-series
+        - mountPath: /data/movies
+          name: sonarr-movies
+        - mountPath: /data/downloads
+          name: sonarr-downloads 
+        env:
+        - name: PUID
+          value: "3000"
+        - name: PGID
+          value: "3000"
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
