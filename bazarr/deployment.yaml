@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bazarr
+spec:
+  selector:
+    matchLabels:
+      app: bazarr
+      release: bazarr
+  template:
+    metadata:
+      labels:
+        app: bazarr
+        release: bazarr
+    spec:
+      volumes:
+      - name: bazarr-config  # < linkname of the volume for the pvc
+        hostPath:
+          path: /mnt/k3s/bazarr-config # < pvc name we created in the previous yaml
+      - name: bazarr-series
+        hostPath:
+          path: /mnt/series
+      - name: bazarr-movies
+        hostPath:
+          path: /mnt/movies
+      containers:
+      - image: linuxserver/bazarr:latest
+        imagePullPolicy: Always
+        name: bazarr
+        ports:
+        - containerPort: 6767
+          name: http
+          protocol: TCP
+        volumeMounts:
+        - mountPath: /config
+          name: bazarr-config
+        - mountPath: /data/series
+          name: bazarr-series
+        - mountPath: /data/movies
+          name: bazarr-movies 
+        env:
+        - name: PUID
+          value: "3000"
+        - name: PGID
+          value: "3000"
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30

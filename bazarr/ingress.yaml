@@ -1,0 +1,19 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: bazarr-ingress
+  namespace: bazarr
+  annotations: 
+    kubernetes.io/ingress.class: traefik-internal
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`bazarr.olympus.mangelschots.org`)
+      kind: Rule
+      services:
+        - name: bazarr-service
+          port: 8989
+  tls:
+    secretName: olympus-mangelschots-org-tls
