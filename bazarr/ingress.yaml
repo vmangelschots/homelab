@@ -14,6 +14,6 @@ spec:
       kind: Rule
       services:
         - name: bazarr-service
-          port: 8989
+          port: 6767
   tls:
     secretName: olympus-mangelschots-org-tls
