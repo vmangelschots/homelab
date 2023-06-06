@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: radarr
+spec:
+  selector:
+    matchLabels:
+      app: radarr
+      release: radarr
+  template:
+    metadata:
+      labels:
+        app: radarr
+        release: radarr
+    spec:
+      volumes:
+      - name: radarr-config  # < linkname of the volume for the pvc
+        hostPath:
+          path: /mnt/k3s/radarr-config # < pvc name we created in the previous yaml
+      - name: radarr-movies
+        hostPath:
+          path: /mnt/radarr
+      - name: radarr-downloads
+        hostPath:
+          path: /mnt/downloads
+      containers:
+      - image: linuxserver/radarr:latest
+        imagePullPolicy: Always
+        name: radarr
+        ports:
+        - containerPort: 7878
+          name: http
+          protocol: TCP
+        volumeMounts:
+        - mountPath: /config
+          name: radarr-config
+        - mountPath: /data/movies
+          name: radarr-movies
+        - mountPath: /data/downloads
+          name: radarr-downloads 
+        env:
+        - name: PUID
+          value: "3000"
+        - name: PGID
+          value: "3000"
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
