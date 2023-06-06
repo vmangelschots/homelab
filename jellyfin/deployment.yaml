@@ -28,6 +28,7 @@ spec:
         hostPath:
           path: /mnt/series
       - name: jellyfin-movies
+        hostPath:
           path: /mnt/movies
       containers:
       - image: lscr.io/linuxserver/jellyfin:latest # < the name of the docker image we will use
