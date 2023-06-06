@@ -19,7 +19,7 @@ spec:
           path: /mnt/k3s/radarr-config # < pvc name we created in the previous yaml
       - name: radarr-movies
         hostPath:
-          path: /mnt/radarr
+          path: /mnt/movies
       - name: radarr-downloads
         hostPath:
           path: /mnt/downloads
