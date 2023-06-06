@@ -27,9 +27,8 @@ spec:
       - name: jellyfin-series
         hostPath:
           path: /mnt/series
-      - name: jellyfin-ssl
-        secret:
-          secretName: olympus-mangelschots-org-tls # < the name ssl certificate, will be created in the ingress yaml
+      - name: jellyfin-movies
+          path: /mnt/movies
       containers:
       - image: lscr.io/linuxserver/jellyfin:latest # < the name of the docker image we will use
         name: jellyfin                      # < name of container
@@ -51,3 +50,5 @@ spec:
            subPath: config                  # < subfolder in the nfs share to be mounted
          - mountPath: /media/series
            name: jellyfin-series
+         - mountPath: /media/movies
+           name: jellyfin-movies
