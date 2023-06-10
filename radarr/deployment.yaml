@@ -46,7 +46,7 @@ spec:
 
       - image: ghcr.io/onedr0p/exportarr
         imagePullPolicy: Always
-        name: radarr_metric_exporter
+        name: radarr-metric-exporter
         ports:
         - containerPort: 9707
           name: metrics
