@@ -1,17 +1,17 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: radarr
+  name: radarr-exporter
 spec:
   selector:
     matchLabels:
-      app: radarr
-      release: radarr
+      app: radarr-exporter
+      release: radarr-exporter
   template:
     metadata:
       labels:
-        app: radarr
-        release: radarr
+        app: radarr-exporter
+        release: radarr-exporter
     spec:
  
       containers:
