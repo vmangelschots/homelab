@@ -28,5 +28,7 @@ spec:
           value: "http://radarr-service.radarr.svc.cluster.local:7878"
         - name: APIKEY
           value: "cea31d802fef4cba87733e4fd1ecd85a"
+        args:
+          - "radarr"
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
