@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prometheus
+spec:
+  selector:
+    matchLabels:
+      app: prometheus
+      release: prometheus
+  template:
+    metadata:
+      labels:
+        app: prometheus
+        release: prometheus
+    spec:
+      volumes:
+      - name: prometheus-config-volume  # < linkname of the volume for the pvc
+        hostPath:
+          path: /mnt/k3s/prometheus-config # < pvc name we created in the previous yaml
+      - name: prometheus-storage-volume
+        hostPath:
+          path: /mnt/k3s/prometheus-storage
+      containers:
+      - image: prom/prometheus
+        imagePullPolicy: Always
+        name: prometheus
+        ports:
+        - containerPort: 9090
+          name: http
+          protocol: TCP
+        volumeMounts:
+          - name: prometheus-config-volume
+            mountPath: /etc/prometheus/
+          - name: prometheus-storage-volume
+            mountPath: /prometheus/
+        env:
+        - name: PUID
+          value: "3000"
+        - name: PGID
+          value: "3000"
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
