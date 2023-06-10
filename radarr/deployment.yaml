@@ -44,17 +44,3 @@ spec:
         - name: PGID
           value: "3000"
 
-      - image: ghcr.io/onedr0p/exportarr
-        imagePullPolicy: Always
-        name: radarr-metric-exporter
-        ports:
-        - containerPort: 9707
-          name: metrics
-          protocol: TCP
-        env:
-        - name: URL
-          value: "http://radarr-service.radarr.svc.cluster.local:7878"
-        - name: APIKEY
-          value: "cea31d802fef4cba87733e4fd1ecd85a"
-      restartPolicy: Always
-      terminationGracePeriodSeconds: 30
