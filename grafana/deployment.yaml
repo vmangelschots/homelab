@@ -18,7 +18,7 @@ spec:
         hostPath:
           path: /mnt/k3s/grafana-storage
       containers:
-      - image: grafana
+      - image: grafana/grafana:latest
         imagePullPolicy: Always
         name: grafana
         ports:
