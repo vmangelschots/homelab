@@ -26,7 +26,7 @@ spec:
           protocol: TCP
         env:
         - name: SABNZBD_BASEURLS
-          value: "http://sabnzdb-service.sabnzdb.svc.cluster.local:7878"
+          value: "http://sabnzdb-service.sabnzdb.svc.cluster.local:8080"
         - name: SABNZBD_APIKEYS
           valueFrom:
             secretKeyRef:
