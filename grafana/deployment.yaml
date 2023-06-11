@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grafana
+spec:
+  selector:
+    matchLabels:
+      app: grafana
+      release: grafana
+  template:
+    metadata:
+      labels:
+        app: grafana
+        release: grafana
+    spec:
+      volumes:
+      - name: grafana-storage-volume
+        hostPath:
+          path: /mnt/k3s/grafana-storage
+      containers:
+      - image: grafana
+        imagePullPolicy: Always
+        name: grafana
+        ports:
+        - containerPort: 3000
+          name: http
+          protocol: TCP
+        volumeMounts:
+          - name: grafana-storage-volume
+            mountPath: /var/lib/grafana
+        env:
+        - name: PUID
+          value: "3000"
+        - name: PGID
+          value: "3000"
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30

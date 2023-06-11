@@ -1,0 +1,19 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: grafana-ingress
+  namespace: grafana
+  annotations: 
+    kubernetes.io/ingress.class: traefik-internal
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`grafana.olympus.mangelschots.org`)
+      kind: Rule
+      services:
+        - name: grafana-service
+          port: 9090
+  tls:
+    secretName: olympus-mangelschots-org-tls
