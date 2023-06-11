@@ -29,10 +29,8 @@ spec:
           value: "http://sabnzdb-service.sabnzdb.svc.cluster.local:7878"
         - name: SABNZBD_APIKEYS
           valueFrom:
-          secretKeyRef:
-            name: sabnzdb-secrets
-            key: api
-        args:
-          - "radarr"
+            secretKeyRef:
+              name: sabnzdb-secrets
+              key: api
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
