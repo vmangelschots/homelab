@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sabnzdb-exporter
+spec:
+  selector:
+    matchLabels:
+      app: sabnzdb-exporter
+      release: sabnzdb-exporter
+  template:
+    metadata:
+      labels:
+        app: sabnzdb-exporter
+        release: sabnzdb-exporter
+    spec:
+ 
+      containers:
+      
+      - image: msroest/sabnzbd_exporter
+        imagePullPolicy: Always
+        name: sabnzdb-exporter
+        ports:
+        - containerPort: 9387
+          name: metrics
+          protocol: TCP
+        env:
+        - name: SABNZBD_BASEURLS
+          value: "http://sabnzdb-service.sabnzdb.svc.cluster.local:7878"
+        - name: SABNZBD_APIKEYS
+          valueFrom:
+          secretKeyRef:
+            name: sabnzdb-secrets
+            key: api
+        args:
+          - "radarr"
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
