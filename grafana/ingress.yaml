@@ -14,6 +14,6 @@ spec:
       kind: Rule
       services:
         - name: grafana-service
-          port: 9090
+          port: 3000
   tls:
     secretName: olympus-mangelschots-org-tls
