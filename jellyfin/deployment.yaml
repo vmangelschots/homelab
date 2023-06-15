@@ -30,6 +30,12 @@ spec:
       - name: jellyfin-movies
         hostPath:
           path: /mnt/movies
+      - name: card
+        hostPath:
+          path: /dev/dri/card1
+      - name: renderer
+        hostPath:
+          path: /dev/dri/renderD128    
       containers:
       - image: lscr.io/linuxserver/jellyfin:latest # < the name of the docker image we will use
         name: jellyfin                      # < name of container
@@ -53,9 +59,8 @@ spec:
            name: jellyfin-series
          - mountPath: /media/movies
            name: jellyfin-movies
-      - name: card
-        hostPath:
-          path: /dev/dri/card1
-      - name: renderer
-        hostPath:
-          path: /dev/dri/renderD128
+         - mountPath: /dev/dri/card1
+           name: card
+         - mountPath: /dev/dri/renderD128
+           name: renderer
+        nodeName: hermes
