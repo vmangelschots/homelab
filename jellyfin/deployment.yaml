@@ -53,6 +53,9 @@ spec:
            name: jellyfin-series
          - mountPath: /media/movies
            name: jellyfin-movies
-        resources:
-          limits:
-            nvidia.com/gpu: 1
+      - name: card
+        hostPath:
+          path: /dev/dri/card1
+      - name: renderer
+        hostPath:
+          path: /dev/dri/renderD128
