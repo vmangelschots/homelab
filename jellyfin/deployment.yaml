@@ -63,4 +63,4 @@ spec:
            name: card
          - mountPath: /dev/dri/renderD128
            name: renderer
-        nodeName: hermes
+      nodeName: hermes
