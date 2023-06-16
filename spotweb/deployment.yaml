@@ -16,7 +16,7 @@ spec:
       volumes:
       - name: spotweb-config  # < linkname of the volume for the pvc
         hostPath:
-          path: /mnt/k3s/spotweb-config # < pvc name we created in the previous yaml
+          path: /mnt/k3s/spotweb-config/dbsettings.inc.php # < pvc name we created in the previous yaml
 
       containers:
       - image: jerheij/spotweb:latest
@@ -27,14 +27,14 @@ spec:
           name: http
           protocol: TCP
         volumeMounts:
-        - mountPath: /var/www/spotweb
+        - mountPath: /var/www/spotweb/dbsettings.inc.php
           name: spotweb-config
         env:
         - name: PUID
           value: "3000"
         - name: PGID
           value: "3000"
-        - name: sql
+        - name: SQL
           value: sqlite
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
