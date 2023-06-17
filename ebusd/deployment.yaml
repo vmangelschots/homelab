@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ebusd
+spec:
+  selector:
+    matchLabels:
+      app: ebusd
+      release: ebusd
+  template:
+    metadata:
+      labels:
+        app: ebusd
+        release: ebusd
+    spec:
+      containers:
+      - image: john30/ebusd:latest
+        imagePullPolicy: Always
+        name: ebusd
+        ports:
+        - containerPort: 8888
+          name: http
+          protocol: TCP
+        env:
+        - name: PUID
+          value: "3000"
+        - name: PGID
+          value: "3000"
+        - name: EBUSD_SCANCONFIG
+          value: 172.21.4.2:10000
+        - name: EBUSD_MQTTHOST
+          value: 172.21.0.3
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
