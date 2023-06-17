@@ -31,7 +31,8 @@ spec:
         - name: EBUSD_DEVICE
           value: ens:172.21.4.2:9999
         - name: EBUSD_MQTTHOST
-          value: 172.21.0.3
-
+          value: '172.21.0.3'
+        - name: EBUSD_MQTTPORT
+          value: '1883'
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
