@@ -34,5 +34,8 @@ spec:
           value: '172.21.0.3'
         - name: EBUSD_MQTTPORT
           value: '1883'
+        - name: EBUSD_MQTTINT
+          value: '/etc/ebusd/mqtt-hassio.cfg'
+        - name: EBUSD_MQTTJSON
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
