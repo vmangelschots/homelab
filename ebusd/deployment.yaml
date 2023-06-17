@@ -27,6 +27,8 @@ spec:
         - name: PGID
           value: "3000"
         - name: EBUSD_SCANCONFIG
+          value: ''
+        - name: EBUSD_DEVICE
           value: -d ens:172.21.4.2:9999
         - name: EBUSD_MQTTHOST
           value: 172.21.0.3
