@@ -6,7 +6,9 @@ metadata:
 spec:
   selector:
     app: ebusd # < reference to the deployment (connects with this deployment)
+  type: LoadBalancer
   ports:
-    - name: webinterface
+    - name: ebusd
       protocol: TCP
       port: 8888
+  loadBalancerIP: 172.21.3.12

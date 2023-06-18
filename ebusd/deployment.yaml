@@ -19,7 +19,7 @@ spec:
         name: ebusd
         ports:
         - containerPort: 8888
-          name: http
+          name: ebusd
           protocol: TCP
         env:
         - name: PUID
