@@ -14,6 +14,6 @@ spec:
       kind: Rule
       services:
         - name: influxdb-service
-          port: 9090
+          port: 8086
   tls:
     secretName: olympus-mangelschots-org-tls
