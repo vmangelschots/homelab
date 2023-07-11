@@ -21,7 +21,7 @@ spec:
       - image: influxdb
         imagePullPolicy: Always
         name: influxdb
-        ports: 8086
+        ports:
         - containerPort: 8086
           name: http
           protocol: TCP
