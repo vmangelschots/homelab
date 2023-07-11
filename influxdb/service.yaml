@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: influxdb-service    # < name of the service
+  namespace: influxdb # < namespace where place the deployment and pods
+spec:
+  selector:
+    app: influxdb # < reference to the deployment (connects with this deployment)
+  ports:
+    - name: webinterface
+      protocol: TCP
+      port: 8086

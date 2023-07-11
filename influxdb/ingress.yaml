@@ -1,0 +1,19 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: influxdb-ingress
+  namespace: influxdb
+  annotations: 
+    kubernetes.io/ingress.class: traefik-internal
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`influxdb.olympus.mangelschots.org`)
+      kind: Rule
+      services:
+        - name: influxdb-service
+          port: 9090
+  tls:
+    secretName: olympus-mangelschots-org-tls

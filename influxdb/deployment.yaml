@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: influxdb
+spec:
+  selector:
+    matchLabels:
+      app: influxdb
+      release: influxdb
+  template:
+    metadata:
+      labels:
+        app: influxdb
+        release: influxdb
+    spec:
+      volumes:
+      - name: influxdb-volume
+        hostPath:
+          path: /mnt/k3s/influxdb
+      containers:
+      - image: influxdb
+        imagePullPolicy: Always
+        name: influxdb
+        ports: 8086
+        - containerPort: 8086
+          name: http
+          protocol: TCP
+        volumeMounts:
+          - name: influxdb-volume
+            mountPath: /var/lib/influxdb
+        env:
+        - name: PUID
+          value: "3000"
+        - name: PGID
+          value: "3000"
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
