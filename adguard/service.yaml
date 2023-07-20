@@ -28,5 +28,5 @@ spec:
       protocol: UDP
       port: 53
   type: LoadBalancer
-  loadBalancerIP: 172.21.3.12
+  loadBalancerIP: 172.21.3.13
 
