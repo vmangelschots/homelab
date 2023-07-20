@@ -13,3 +13,20 @@ spec:
     - name: initialinterface
       protocol: TCP
       port: 3000
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: adguard-service-dns    # < name of the service
+  namespace: adguard # < namespace where place the deployment and pods
+spec:
+  selector:
+    app: adguard # < reference to the deployment (connects with this deployment)
+  ports:
+    - name: dns
+      protocol: UDP
+      port: 53
+  type: LoadBalancer
+  loadBalancerIP: 172.21.3.12
+
