@@ -1,0 +1,19 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: adguard-ingress
+  namespace: adguard
+  annotations: 
+    kubernetes.io/ingress.class: traefik-internal
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`adguard.olympus.mangelschots.org`)
+      kind: Rule
+      services:
+        - name: adguard-service
+          port: 80
+  tls:
+    secretName: olympus-mangelschots-org-tls
