@@ -25,9 +25,6 @@ spec:
         - containerPort: 80
           name: http
           protocol: TCP
-        - containerPort: 3000
-          name: initial
-          protocol: TCP
         volumeMounts:
           - name: adguard-data
             mountPath: /opt/adguardhome/work
