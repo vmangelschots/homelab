@@ -28,7 +28,7 @@ spec:
         secret:
           secretName: olympus-mangelschots-org-tls # < the name ssl certificate, will be created in the ingress yaml
       containers:
-      - image: ghcr.io/linuxserver/heimdall-media # < the name of the docker image we will use
+      - image: ghcr.io/linuxserver/heimdall # < the name of the docker image we will use
         name: heimdall-media                      # < name of container
         imagePullPolicy: Always             # < always use the latest image when creating container/pod
         env:                                # < the environment variables required (see container documentation)
