@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: overseerr
+spec:
+  selector:
+    matchLabels:
+      app: overseerr
+      release: overseerr
+  template:
+    metadata:
+      labels:
+        app: overseerr
+        release: overseerr
+    spec:
+      volumes:
+      - name: overseerr-config  # < linkname of the volume for the pvc
+        hostPath:
+          path: /mnt/k3s/overseerr-config # < pvc name we created in the previous yaml
+      containers:
+      - image: linuxserver/overseerr:latest
+        imagePullPolicy: Always
+        name: overseerr
+        ports:
+        - containerPort: 5055
+          name: http
+          protocol: TCP
+        volumeMounts:
+        - mountPath: /config
+          name: overseerr-config
+
+        env:
+        - name: PUID
+          value: "3000"
+        - name: PGID
+          value: "3000"
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30

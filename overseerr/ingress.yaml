@@ -1,0 +1,19 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: overseerr-ingress
+  namespace: overseerr
+  annotations: 
+    kubernetes.io/ingress.class: traefik-internal
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`overseerr.olympus.mangelschots.org`)
+      kind: Rule
+      services:
+        - name: overseerr-service
+          port: 5055
+  tls:
+    secretName: olympus-mangelschots-org-tls
