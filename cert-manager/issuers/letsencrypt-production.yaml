@@ -18,4 +18,5 @@ spec:
               key: cloudflare-token
         selector:
           dnsZones:
-            - "olympus.mangelschots.org"
+            - olympus.mangelschots.org
+              start.mangelschots.org
