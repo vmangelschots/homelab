@@ -1,0 +1,19 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: heimdall-media-ingress
+  namespace: heimdall-media
+  annotations: 
+    kubernetes.io/ingress.class: traefik-internal
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`start.mangelschots.org`)
+      kind: Rule
+      services:
+        - name: heimdall-media-service
+          port: 80
+  tls:
+    secretName: mangelschots-org-tls

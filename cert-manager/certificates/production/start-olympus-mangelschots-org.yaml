@@ -1,0 +1,14 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: start-mangelschots-org
+  namespace: traefik
+spec:
+  secretName: start-mangelschots-org-tls
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  commonName: "start.mangelschots.org"
+  dnsNames:
+  - "start.mangelschots.org"
