@@ -9,6 +9,8 @@
     nfs_shares:
       - { share: /mnt/large_pool/k3s, mount: /mnt/k3s }
       - { share: /mnt/large_pool/series, mount: /mnt/series }
+      - { share: /mnt/large_pool/downloads, mount: /mnt/downloads }
+      - { share: /mnt/large_pool/movies, mount: /mnt/movies}
       # Add more NFS shares here as needed
   tasks:
     - name: Install dependencies
