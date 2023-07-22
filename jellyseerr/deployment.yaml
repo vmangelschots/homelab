@@ -18,7 +18,7 @@ spec:
         hostPath:
           path: /mnt/k3s/jellyseerr-config # < pvc name we created in the previous yaml
       containers:
-      - image: linuxserver/jellyseerr:latest
+      - image: fallenbagel/jellyseerr:latest
         imagePullPolicy: Always
         name: jellyseerr
         ports:
