@@ -1,33 +1,33 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: overseerr
+  name: jellyseerr
 spec:
   selector:
     matchLabels:
-      app: overseerr
-      release: overseerr
+      app: jellyseerr
+      release: jellyseerr
   template:
     metadata:
       labels:
-        app: overseerr
-        release: overseerr
+        app: jellyseerr
+        release: jellyseerr
     spec:
       volumes:
-      - name: overseerr-config  # < linkname of the volume for the pvc
+      - name: jellyseerr-config  # < linkname of the volume for the pvc
         hostPath:
-          path: /mnt/k3s/overseerr-config # < pvc name we created in the previous yaml
+          path: /mnt/k3s/jellyseerr-config # < pvc name we created in the previous yaml
       containers:
-      - image: linuxserver/overseerr:latest
+      - image: linuxserver/jellyseerr:latest
         imagePullPolicy: Always
-        name: overseerr
+        name: jellyseerr
         ports:
         - containerPort: 5055
           name: http
           protocol: TCP
         volumeMounts:
         - mountPath: /config
-          name: overseerr-config
+          name: jellyseerr-config
 
         env:
         - name: PUID
