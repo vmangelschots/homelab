@@ -51,6 +51,10 @@ spec:
           value: "3000" # < user "docker"
         - name: TZ
           value: Europe/Brussels
+        - name: NVIDIA_VISIBLE_DEVICES
+          value: all
+        - name: NVIDIA_DRIVER_CAPABILITIES
+          value: compute,utility
         ports:                              # < the ports required (see container documentation)
          - containerPort: 8096
            name: webinterface
