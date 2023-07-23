@@ -67,8 +67,3 @@ spec:
            name: jellyfin-series
          - mountPath: /media/movies
            name: jellyfin-movies
-         - mountPath: /dev/dri/card0
-           name: card
-         - mountPath: /dev/dri/renderD128
-           name: renderer
-      nodeName: hermes
