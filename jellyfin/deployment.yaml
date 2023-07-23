@@ -54,7 +54,7 @@ spec:
         - name: NVIDIA_VISIBLE_DEVICES
           value: all
         - name: NVIDIA_DRIVER_CAPABILITIES
-          value: compute,utility
+          value: all
         ports:                              # < the ports required (see container documentation)
          - containerPort: 8096
            name: webinterface
