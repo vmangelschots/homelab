@@ -1,0 +1,19 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: radarr_dutch-ingress
+  namespace: radarr
+  annotations: 
+    kubernetes.io/ingress.class: traefik-internal
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`radarr_dutch.olympus.mangelschots.org`)
+      kind: Rule
+      services:
+        - name: radarr_dutch-service
+          port: 7878
+  tls:
+    secretName: olympus-mangelschots-org-tls

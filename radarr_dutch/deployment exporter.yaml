@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: radarr_dutch-exporter
+spec:
+  selector:
+    matchLabels:
+      app: radarr_dutch-exporter
+      release: radarr_dutch-exporter
+  template:
+    metadata:
+      labels:
+        app: radarr_dutch-exporter
+        release: radarr_dutch-exporter
+    spec:
+ 
+      containers:
+      
+      - image: ghcr.io/onedr0p/exportarr
+        imagePullPolicy: Always
+        name: radarr_dutch-exporter
+        ports:
+        - containerPort: 9707
+          name: metrics
+          protocol: TCP
+        env:
+        - name: URL
+          value: "http://radarr-service.radarr.svc.cluster.local:7878"
+        - name: APIKEY
+          value: "cea31d802fef4cba87733e4fd1ecd85a"
+        args:
+          - "radarr"
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30

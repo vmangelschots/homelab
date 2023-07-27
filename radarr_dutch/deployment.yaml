@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: radarr_dutch
+spec:
+  selector:
+    matchLabels:
+      app: radarr_dutch
+      release: radarr_dutch
+  template:
+    metadata:
+      labels:
+        app: radarr_dutch
+        release: radarr_dutch
+    spec:
+      volumes:
+      - name: radarr_dutch-config  # < linkname of the volume for the pvc
+        hostPath:
+          path: /mnt/k3s/radarr-config # < pvc name we created in the previous yaml
+      - name: radarr_dutch-movies
+        hostPath:
+          path: /mnt/nederlandse_films
+      - name: radarr_dutch-downloads
+        hostPath:
+          path: /mnt/downloads
+      containers:
+      - image: linuxserver/radarr:latest
+        imagePullPolicy: Always
+        name: radarr_dutch
+        ports:
+        - containerPort: 7878
+          name: http
+          protocol: TCP
+        volumeMounts:
+        - mountPath: /config
+          name: radarr_dutch-config
+        - mountPath: /data/movies
+          name: radarr_dutch-movies
+        - mountPath: /data/downloads
+          name: radarr_dutch-downloads 
+        env:
+        - name: PUID
+          value: "3000"
+        - name: PGID
+          value: "3000"
+
