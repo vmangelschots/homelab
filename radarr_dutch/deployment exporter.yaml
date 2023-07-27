@@ -1,24 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: radarr_dutch-exporter
+  name: radarr-dutch-exporter
 spec:
   selector:
     matchLabels:
-      app: radarr_dutch-exporter
-      release: radarr_dutch-exporter
+      app: radarr-dutch-exporter
+      release: radarr-dutch-exporter
   template:
     metadata:
       labels:
-        app: radarr_dutch-exporter
-        release: radarr_dutch-exporter
+        app: radarr-dutch-exporter
+        release: radarr-dutch-exporter
     spec:
  
       containers:
       
       - image: ghcr.io/onedr0p/exportarr
         imagePullPolicy: Always
-        name: radarr_dutch-exporter
+        name: radarr-dutch-exporter
         ports:
         - containerPort: 9707
           name: metrics
