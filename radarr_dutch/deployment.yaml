@@ -16,7 +16,7 @@ spec:
       volumes:
       - name: radarr-dutch-config  # < linkname of the volume for the pvc
         hostPath:
-          path: /mnt/k3s/radarr-config # < pvc name we created in the previous yaml
+          path: /mnt/k3s/radarr-dutch-config # < pvc name we created in the previous yaml
       - name: radarr-dutch-movies
         hostPath:
           path: /mnt/nederlandse_films
