@@ -20,7 +20,7 @@ spec:
       labels:
         app: jellyfin
     spec:
-      runtimeClassName: nvidia
+      #runtimeClassName: nvidia
       volumes:
       - name: jellyfin-config  # < linkname of the volume for the pvc
         hostPath:
