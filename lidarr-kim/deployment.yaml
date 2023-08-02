@@ -1,43 +1,43 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: radarr
+  name: lidarr-kim
 spec:
   selector:
     matchLabels:
-      app: radarr
-      release: radarr
+      app: lidarr-kim
+      release: lidarr-kim
   template:
     metadata:
       labels:
-        app: radarr
-        release: radarr
+        app: lidarr-kim
+        release: lidarr-kim
     spec:
       volumes:
-      - name: radarr-config  # < linkname of the volume for the pvc
+      - name: lidarr-kim-config  # < linkname of the volume for the pvc
         hostPath:
-          path: /mnt/k3s/radarr-config # < pvc name we created in the previous yaml
-      - name: radarr-movies
+          path: /mnt/k3s/lidarr-kim-config # < pvc name we created in the previous yaml
+      - name: lidarr-kim-songs
         hostPath:
-          path: /mnt/movies
-      - name: radarr-downloads
+          path: /mnt/kim-songs
+      - name: lidarr-kim-downloads
         hostPath:
           path: /mnt/downloads
       containers:
-      - image: linuxserver/radarr:latest
+      - image: linuxserver/lidarr:latest
         imagePullPolicy: Always
-        name: radarr
+        name: lidarr
         ports:
-        - containerPort: 7878
+        - containerPort: 8686
           name: http
           protocol: TCP
         volumeMounts:
         - mountPath: /config
-          name: radarr-config
-        - mountPath: /data/movies
-          name: radarr-movies
+          name: lidarr-kim-config
+        - mountPath: /data/songs
+          name: lidarr-kim-songs
         - mountPath: /data/downloads
-          name: radarr-downloads 
+          name: lidarr-kim-downloads 
         env:
         - name: PUID
           value: "3000"

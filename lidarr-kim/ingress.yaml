@@ -2,18 +2,18 @@
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: radarr-ingress
-  namespace: radarr
+  name: lidarr-kim-ingress
+  namespace: lidarr-kim
   annotations: 
     kubernetes.io/ingress.class: traefik-internal
 spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`radarr.olympus.mangelschots.org`)
+    - match: Host(`lidarr-kim.olympus.mangelschots.org`)
       kind: Rule
       services:
-        - name: radarr-service
+        - name: lidarr-kim-service
           port: 7878
   tls:
     secretName: olympus-mangelschots-org-tls
