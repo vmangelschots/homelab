@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: radarr-service    # < name of the service
-  namespace: radarr # < namespace where place the deployment and pods
+  name: lidarr-kim-service    # < name of the service
+  namespace: lidarr-kim # < namespace where place the deployment and pods
 spec:
   selector:
-    app: radarr # < reference to the deployment (connects with this deployment)
+    app: lidarr-kim # < reference to the deployment (connects with this deployment)
   ports:
     - name: webinterface
       protocol: TCP
-      port: 7878
+      port: 8686
