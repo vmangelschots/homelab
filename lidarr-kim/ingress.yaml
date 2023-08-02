@@ -14,6 +14,6 @@ spec:
       kind: Rule
       services:
         - name: lidarr-kim-service
-          port: 7878
+          port: 8686
   tls:
     secretName: olympus-mangelschots-org-tls
