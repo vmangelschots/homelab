@@ -33,7 +33,7 @@ spec:
           path: /mnt/movies 
       - name: jellyfin-dutchmovies
         hostPath:
-          path: /mnt/nederlands_films
+          path: /mnt/nederlandse_films
       containers:
       - image: lscr.io/linuxserver/jellyfin:latest # < the name of the docker image we will use
         name: jellyfin                      # < name of container
