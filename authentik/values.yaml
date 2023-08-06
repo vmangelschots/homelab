@@ -1,0 +1,22 @@
+authentik:
+  secret_key: "RWGNZLLSjR2hRzTs3yutDz8DZhZN8YGqfZoTZm9yA2yRsJWmZb"
+  # This sends anonymous usage-data, stack traces on errors and
+  # performance data to sentry.beryju.org, and is fully opt-in
+  error_reporting:
+    enabled: true
+  postgresql:
+    password: "8K4Dv3cJMka5dLKeabk"
+
+ingress:
+  enabled: true
+  hosts:
+    - host: auth.olympus.mangelschots.org
+      paths:
+        - path: "/"
+          pathType: Prefix
+
+postgresql:
+  enabled: true
+  postgresqlPassword: "8K4Dv3cJMka5dLKeabk"
+redis:
+  enabled: true
