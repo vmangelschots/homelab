@@ -1,0 +1,19 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: authelia-ingress
+  namespace: authelia
+  annotations: 
+    kubernetes.io/ingress.class: traefik
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`auth.mangelschots.org`)
+      kind: Rule
+      services:
+        - name: authelia-service
+          port: 9091
+  tls:
+    secretName: auth-mangelschots-org-tls
