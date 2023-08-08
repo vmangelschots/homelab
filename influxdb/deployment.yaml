@@ -27,7 +27,7 @@ spec:
           protocol: TCP
         volumeMounts:
           - name: influxdb-volume
-            mountPath: /var/lib/influxdb
+            mountPath: /var/lib/influxdb2
         env:
         - name: PUID
           value: "3000"
