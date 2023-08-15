@@ -20,7 +20,7 @@ spec:
       labels:
         app: jellyfin
     spec:
-      #runtimeClassName: nvidia
+      runtimeClassName: nvidia
       volumes:
       - name: jellyfin-config  # < linkname of the volume for the pvc
         hostPath:
@@ -38,6 +38,10 @@ spec:
       - image: lscr.io/linuxserver/jellyfin:latest # < the name of the docker image we will use
         name: jellyfin                      # < name of container
         imagePullPolicy: Always             # < always use the latest image when creating container/pod
+        resources:
+          limits:
+            nvidia.com/gpu: 1
+        
         env:                                # < the environment variables required (see container documentation)
         - name: PGID
           value: "3000" # < group "user"
