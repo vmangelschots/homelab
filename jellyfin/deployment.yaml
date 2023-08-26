@@ -34,6 +34,9 @@ spec:
       - name: jellyfin-dutchmovies
         hostPath:
           path: /mnt/nederlandse_films
+      - name: jellyfin-transcode
+        hostPath: 
+          path: /dev/shm/jellyfin
       containers:
       - image: lscr.io/linuxserver/jellyfin:latest # < the name of the docker image we will use
         name: jellyfin                      # < name of container
@@ -67,3 +70,5 @@ spec:
            name: jellyfin-movies
          - mountPath: /media/dutch-movies
            name: jellyfin-dutchmovies
+         - mountPath: /transcode
+           name: jellyfin-transcode
