@@ -20,6 +20,9 @@ spec:
       containers:
       - image: influxdb
         imagePullPolicy: Always
+        resources:
+          limits:
+            nvidia.com/gpu: 1
         name: influxdb
         ports:
         - containerPort: 8086
@@ -33,5 +36,9 @@ spec:
           value: "3000"
         - name: PGID
           value: "3000"
+        - name: NVIDIA_VISIBLE_DEVICES
+          value: all
+        - name: NVIDIA_DRIVER_CAPABILITIES
+          value: all
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
