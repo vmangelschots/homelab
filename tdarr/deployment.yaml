@@ -24,7 +24,7 @@ spec:
         hostPath:
           path: /mnt/downloads
       containers:
-      - image: linuxserver/tdarr:latest
+      - image: ghcr.io/haveagitgat/tdarr:latest
         imagePullPolicy: Always
         name: tdarr
         ports:
