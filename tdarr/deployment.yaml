@@ -32,7 +32,7 @@ spec:
           name: http
           protocol: TCP
         - containerPort: 8266
-          name: http
+          name: server
           protocol: TCP
         volumeMounts:
         - mountPath: /config

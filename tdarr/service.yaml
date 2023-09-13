@@ -10,3 +10,6 @@ spec:
     - name: webinterface
       protocol: TCP
       port: 8265
+    - name: server
+      protocol: TCP
+      port: 8266
