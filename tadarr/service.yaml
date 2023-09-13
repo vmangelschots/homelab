@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: tdarr-service    # < name of the service
+  namespace: tdarr # < namespace where place the deployment and pods
+spec:
+  selector:
+    app: tdarr # < reference to the deployment (connects with this deployment)
+  ports:
+    - name: webinterface
+      protocol: TCP
+      port: 8266

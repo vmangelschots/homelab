@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tdarr
+spec:
+  selector:
+    matchLabels:
+      app: tdarr
+      release: tdarr
+  template:
+    metadata:
+      labels:
+        app: tdarr
+        release: tdarr
+    spec:
+      volumes:
+      - name: tdarr-config  # < linkname of the volume for the pvc
+        hostPath:
+          path: /mnt/k3s/tdarr-config # < pvc name we created in the previous yaml
+      - name: tdarr-movies
+        hostPath:
+          path: /mnt/movies
+      - name: tdarr-downloads
+        hostPath:
+          path: /mnt/downloads
+      containers:
+      - image: linuxserver/tdarr:latest
+        imagePullPolicy: Always
+        name: tdarr
+        ports:
+        - containerPort: 8266
+          name: http
+          protocol: TCP
+        volumeMounts:
+        - mountPath: /config
+          name: tdarr-config
+        - mountPath: /data/movies
+          name: tdarr-movies
+        - mountPath: /data/downloads
+          name: tdarr-downloads 
+        env:
+        - name: PUID
+          value: "3000"
+        - name: PGID
+          value: "3000"
+

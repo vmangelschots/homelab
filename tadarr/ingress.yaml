@@ -1,0 +1,19 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: tdarr-ingress
+  namespace: tdarr
+  annotations: 
+    kubernetes.io/ingress.class: traefik-internal
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`tdarr.olympus.mangelschots.org`)
+      kind: Rule
+      services:
+        - name: tdarr-service
+          port: 8266
+  tls:
+    secretName: olympus-mangelschots-org-tls
