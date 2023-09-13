@@ -28,6 +28,9 @@ spec:
         imagePullPolicy: Always
         name: tdarr
         ports:
+        - containerPort: 8265
+          name: http
+          protocol: TCP
         - containerPort: 8266
           name: http
           protocol: TCP
