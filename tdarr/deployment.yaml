@@ -35,7 +35,7 @@ spec:
           name: server
           protocol: TCP
         volumeMounts:
-        - mountPath: /app
+        - mountPath: /app/config
           name: tdarr-config
         - mountPath: /data/movies
           name: tdarr-movies
