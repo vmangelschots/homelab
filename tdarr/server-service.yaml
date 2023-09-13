@@ -11,4 +11,4 @@ spec:
     - name: server
       protocol: TCP
       port: 8266
-  loadBalancerIP: 172.21.3.13
+  loadBalancerIP: 172.21.3.14
