@@ -14,6 +14,9 @@ spec:
         release: tdarr
     spec:
       volumes:
+      - name: tdarr-server  # < linkname of the volume for the pvc
+        hostPath:
+          path: /mnt/k3s/tdarr-server # < pvc name we created in the previous yaml
       - name: tdarr-config  # < linkname of the volume for the pvc
         hostPath:
           path: /mnt/k3s/tdarr-config # < pvc name we created in the previous yaml
@@ -35,8 +38,10 @@ spec:
           name: server
           protocol: TCP
         volumeMounts:
-        - mountPath: /app/config
+        - mountPath: /app/configs
           name: tdarr-config
+        - mountPath: /app/server
+          name: tdarr-server
         - mountPath: /data/movies
           name: tdarr-movies
         - mountPath: /data/downloads
