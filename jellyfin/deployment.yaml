@@ -20,7 +20,6 @@ spec:
       labels:
         app: jellyfin
     spec:
-      runtimeClassName: nvidia
       volumes:
       - name: jellyfin-config  # < linkname of the volume for the pvc
         hostPath:
@@ -52,10 +51,7 @@ spec:
           value: "3000" # < user "docker"
         - name: TZ
           value: Europe/Brussels
-        - name: NVIDIA_VISIBLE_DEVICES
-          value: all
-        - name: NVIDIA_DRIVER_CAPABILITIES
-          value: all
+
         ports:                              # < the ports required (see container documentation)
          - containerPort: 8096
            name: webinterface
