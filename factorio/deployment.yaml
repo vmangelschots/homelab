@@ -40,10 +40,10 @@ spec:
           value: Europe/Brussels
         ports:                              # < the ports required (see container documentation)
          - containerPort: 34279
-           name: fact_udp
+           name: factudp
            protocol: UDP
          - containerPort: 27015
-           name: fact_tcp
+           name: facttcp
            protocol: TCP
         volumeMounts:                       # < the volume mount in the container. Look at the relation volumelabel->pvc->pv
          - mountPath: /config               # < mount location in the container

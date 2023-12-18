@@ -7,10 +7,10 @@ spec:
   selector:
     app: factorio           # < reference to the deployment (connects with this deployment)
   ports:
-    - name: fact_udp
+    - name: factudp
       protocol: UDP
       port: 34197
-    - name: fact_tcp
+    - name: facttcp
       protocol: TCP
       port: 27015
   type: LoadBalancer
