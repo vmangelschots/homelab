@@ -30,8 +30,8 @@ spec:
             mountPath: /var/lib/influxdb2
         env:
         - name: PUID
-          value: "3000"
+          value: "568"
         - name: PGID
-          value: "3000"
+          value: "568"
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
