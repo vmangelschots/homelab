@@ -46,6 +46,6 @@ spec:
            name: facttcp
            protocol: TCP
         volumeMounts:                       # < the volume mount in the container. Look at the relation volumelabel->pvc->pv
-         - mountPath: /config               # < mount location in the container
+         - mountPath: /factorio               # < mount location in the container
            name: factorio-config               # < volumelabel configured earlier in the yaml file
            subPath: config                  # < subfolder in the nfs share to be mounted
