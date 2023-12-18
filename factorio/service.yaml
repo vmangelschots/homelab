@@ -10,7 +10,7 @@ spec:
     - name: fact_udp
       protocol: UDP
       port: 34197
-    - name: fact_TCP
+    - name: fact_tcp
       protocol: TCP
       port: 27015
   type: LoadBalancer
