@@ -20,9 +20,6 @@ spec:
       containers:
       - image: influxdb
         imagePullPolicy: Always
-        resources:
-          limits:
-            nvidia.com/gpu: 1
         name: influxdb
         ports:
         - containerPort: 8086
