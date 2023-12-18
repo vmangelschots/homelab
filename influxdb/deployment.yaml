@@ -16,7 +16,7 @@ spec:
       volumes:
       - name: influxdb-volume
         hostPath:
-          path: /mnt/k3s/influxdb
+          path: /mnt/k3s_nomap/influxdb
       containers:
       - image: influxdb
         imagePullPolicy: Always
@@ -36,9 +36,5 @@ spec:
           value: "3000"
         - name: PGID
           value: "3000"
-        - name: NVIDIA_VISIBLE_DEVICES
-          value: all
-        - name: NVIDIA_DRIVER_CAPABILITIES
-          value: all
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
