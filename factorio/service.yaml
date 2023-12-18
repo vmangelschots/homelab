@@ -14,5 +14,5 @@ spec:
       protocol: TCP
       port: 27015
   type: LoadBalancer
-  loadBalancerIP: 172.21.3.14
+  loadBalancerIP: 172.21.3.15
 
