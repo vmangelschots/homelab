@@ -11,6 +11,9 @@
       - { share: /mnt/large_pool/series, mount: /mnt/series }
       - { share: /mnt/large_pool/downloads, mount: /mnt/downloads }
       - { share: /mnt/large_pool/movies, mount: /mnt/movies}
+      - { share: /mnt/large_pool/nederlandse_films, mount: /mnt/nederlandse_films}
+      - { share: /mnt/large_pool/k3s_nomap, mount: /mnt/k3s_nomap }
+      - { share: /mnt/large_pool/songs-kim, mount: /mnt/kim-songs}
       # Add more NFS shares here as needed
   tasks:
     - name: Install dependencies
