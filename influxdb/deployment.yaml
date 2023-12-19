@@ -15,7 +15,7 @@ spec:
     spec:
       volumes:
       - name: influxdb-volume
-        persistantVolumeClaim:
+        persistentVolumeClaim:
           claimName: nfs-pvc-influxdb
       containers:
       - image: influxdb
