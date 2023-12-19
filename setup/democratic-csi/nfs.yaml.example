@@ -25,7 +25,7 @@ driver:
       protocol: http
       host: 172.21.0.4
       port: 80
-      apiKey: 1-IM1WpJ7Qcyqt6EoKVtR3NNvg9AIDHbOtCPf98MAtDqREs4ea3zZGF2fUpRkfSr4R1-IM1WpJ7Qcyqt6EoKVtR3NNvg9AIDHbOtCPf98MAtDqREs4ea3zZGF2fUpRkfSr4Rappsa
+      apiKey: 
       username: root
       allowInsecure: true
     sshConnection:
