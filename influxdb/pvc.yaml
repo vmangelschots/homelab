@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-    name: nfs-pvc-influxdb
+    name: iscsi-pvc-influxdb
     namespace: influxdb
     labels:
       app: influxdb

@@ -16,7 +16,7 @@ spec:
       volumes:
       - name: influxdb-volume
         persistentVolumeClaim:
-          claimName: nfs-pvc-influxdb
+          claimName: iscsi-pvc-influxdb
       containers:
       - image: influxdb
         imagePullPolicy: Always
