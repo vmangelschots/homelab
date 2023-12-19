@@ -15,8 +15,8 @@ spec:
     spec:
       volumes:
       - name: influxdb-volume
-        hostPath:
-          path: /mnt/k3s_nomap/influxdb
+        persistantVolumeClaim:
+          claimName: nfs-pvc-influxdb
       containers:
       - image: influxdb
         imagePullPolicy: Always
