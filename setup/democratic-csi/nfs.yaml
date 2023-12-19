@@ -33,44 +33,6 @@ driver:
       port: 22
       username: root
       privateKey: |
-      -----BEGIN OPENSSH PRIVATE KEY-----
-      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
-      -----END OPENSSH PRIVATE KEY-----
     zfs:
       datasetParentName: large_pool/k3s-csi/v
       detachedSnapshotsDatasetParentName: large_pool/k3s-csi/s
