@@ -2,13 +2,13 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: start-mangelschots-org
-  namespace: heimdall-media 
+  name: auth-mangelschots-org
+  namespace: authelia 
 spec:
-  secretName: start-mangelschots-org-tls
+  secretName: auth-mangelschots-org-tls
   issuerRef:
     name: letsencrypt-production
     kind: ClusterIssuer
-  commonName: "start.mangelschots.org"
+  commonName: "auth.mangelschots.org"
   dnsNames:
   - "start.mangelschots.org"
