@@ -1,0 +1,14 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: movies-mangelschots-org
+  namespace: heimdall-media 
+spec:
+  secretName: movies-mangelschots-org-tls
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  commonName: "movies.mangelschots.org"
+  dnsNames:
+  - "movies.mangelschots.org"

@@ -10,7 +10,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`jellyfin.olympus.mangelschots.org`)
+    - match: Host(`movies.mangelschots.org`)
       kind: Rule
       services:
         - name: jellyfin-service
