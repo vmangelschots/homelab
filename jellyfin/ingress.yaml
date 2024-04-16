@@ -5,7 +5,7 @@ metadata:
   name: jellyfin-ingress
   namespace: jellyfin
   annotations: 
-    kubernetes.io/ingress.class: traefik
+    kubernetes.io/ingress.class: traefik-external
 spec:
   entryPoints:
     - websecure
