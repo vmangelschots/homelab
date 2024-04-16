@@ -10,10 +10,10 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`jellyseerr.olympus.mangelschots.org`)
+    - match: Host(`requests.mangelschots.org`)
       kind: Rule
       services:
         - name: jellyseerr-service
           port: 5055
   tls:
-    secretName: olympus-mangelschots-org-tls
+    secretName: requests-mangelschots-org-tls

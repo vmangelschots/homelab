@@ -16,4 +16,4 @@ spec:
         - name: jellyfin-service
           port: 8096
   tls:
-    secretName: olympus-mangelschots-org-tls
+    secretName: movies-mangelschots-org-tls
