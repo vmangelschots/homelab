@@ -1,0 +1,19 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: vaultwarden-ingress
+  namespace: vaultwarden
+  annotations: 
+    kubernetes.io/ingress.class: traefik-internal
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`vault.mangelschots.org`)
+      kind: Rule
+      services:
+        - name: vaultwarden-service
+          port: 80
+  tls:
+    secretName: vault-mangelschots-org-tls

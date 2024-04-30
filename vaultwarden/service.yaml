@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: vaultwarden-service    # < name of the service
+  namespace: vaultwarden       # < namespace where place the deployment and pods
+spec:
+  selector:
+    app: vaultwarden           # < reference to the deployment (connects with this deployment)
+  ports:
+    - name: http-80
+      protocol: TCP
+      port: 80

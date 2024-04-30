@@ -1,0 +1,14 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: vault-mangelschots-org
+  namespace: vaultwarden 
+spec:
+  secretName: vault-mangelschots-org-tls
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  commonName: "vault.mangelschots.org"
+  dnsNames:
+  - "vault.mangelschots.org"
