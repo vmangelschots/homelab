@@ -38,6 +38,21 @@ spec:
           value: "3000" # < user "docker"
         - name: TZ
           value: Europe/Brussels
+        - name: ENCRYPTION_KEY
+          valueFrom:
+            secretKeyRef:
+              name: automatisch
+              key: encryption_key 
+        - name: WEBHOOK_SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              name: automatisch
+              key: webhook_secret_key
+        - name: APP_SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              name: automatisch
+              key: app_secret_key
       - image: automatischio/automatisch:latest # < the name of the docker image we will use
         name: automatisch-worker                      # < name of container
         imagePullPolicy: Always             # < always use the latest image when creating container/pod
@@ -50,6 +65,21 @@ spec:
           value: "3000" # < user "docker"
         - name: TZ
           value: Europe/Brussels
+        - name: ENCRYPTION_KEY
+          valueFrom:
+            secretKeyRef:
+              name: automatisch
+              key: encryption_key 
+        - name: WEBHOOK_SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              name: automatisch
+              key: webhook_secret_key
+        - name: APP_SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              name: automatisch
+              key: app_secret_key
         ports:                              # < the ports required (see container documentation)
          - containerPort: 80
            name: http-80
