@@ -56,8 +56,8 @@ spec:
            protocol: TCP
                      # < volumelabel configured earlier in the yaml file
                                          # < subfolder in the nfs share to be mounted
- redis:
-        - image: 'redis:7.0.4'
-          volumeMounts:                       # < the volume mount in the container. Look at the relation volumelabel->pvc->pv
+      - image: 'redis:7.0.4'
+        name: redis
+        volumeMounts:                       # < the volume mount in the container. Look at the relation volumelabel->pvc->pv
           - mountPath: /data               # < mount location in the container
             name: automatisch-redis-data  
