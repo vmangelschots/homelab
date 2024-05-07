@@ -39,7 +39,7 @@ spec:
         - name: TZ
           value: Europe/Brussels
       - image: automatischio/automatisch:latest # < the name of the docker image we will use
-        name: automatisch                      # < name of container
+        name: automatisch-worker                      # < name of container
         imagePullPolicy: Always             # < always use the latest image when creating container/pod
         env:          
         - name: worker
