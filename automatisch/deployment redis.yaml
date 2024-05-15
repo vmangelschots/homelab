@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: automatisch        # < name of the deployment
+  namespace: automatisch   # < namespace where place the deployment and pods
+  labels:
+    app: automatisch       # < label for tagging and reference
+spec:
+  replicas: 1           # < number of pods to deploy
+  selector:
+    matchLabels:
+      app: automatisch-redis
+  strategy:
+    rollingUpdate:
+      maxSurge: 0       # < The number of pods that can be created above the desired amount of pods during an update
+      maxUnavailable: 1 # < The number of pods that can be unavailable during the update process
+    type: RollingUpdate # < New pods are added gradually, and old pods are terminated gradually
+  template:
+    metadata:
+      labels:
+        app: automatisch
+    spec:
+      volumes:
+      - name: automatisch-redis-data  # < linkname of the volume for the pvc
+        hostPath:
+          path: /mnt/k3s/automatisch-redis-data # < pvc name we created in the previous yam
+      - name: automatisch-ssl
+        secret:
+          secretName: olympus-mangelschots-org-tls # < the name ssl certificate, will be created in the ingress yaml
+      containers:
+     
+      - image: 'redis:7.0.4'
+        name: redis
+        volumeMounts:                       # < the volume mount in the container. Look at the relation volumelabel->pvc->pv
+          - mountPath: /data               # < mount location in the container
+            name: automatisch-redis-data  
