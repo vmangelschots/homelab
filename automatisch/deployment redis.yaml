@@ -18,7 +18,7 @@ spec:
   template:
     metadata:
       labels:
-        app: automatisch
+        app: automatisch-redis
     spec:
       volumes:
       - name: automatisch-redis-data  # < linkname of the volume for the pvc
