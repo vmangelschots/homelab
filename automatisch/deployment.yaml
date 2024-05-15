@@ -104,7 +104,7 @@ spec:
         name: postgres
         volumeMounts:                       # < the volume mount in the container. Look at the relation volumelabel->pvc->pv
           - mountPath: /var/lib/postgresql/data               # < mount location in the container
-            name: automatisch-postgres-data 
+            name: automatisch-postgress-data 
         ports:
           - containerPort: 5432
         env:
