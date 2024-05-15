@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: automatisch        # < name of the deployment
+  name: automatisch-host        # < name of the deployment
   namespace: automatisch   # < namespace where place the deployment and pods
   labels:
     app: automatisch-host       # < label for tagging and reference
