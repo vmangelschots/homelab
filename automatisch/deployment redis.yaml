@@ -4,7 +4,7 @@ metadata:
   name: automatisch-redis        # < name of the deployment
   namespace: automatisch   # < namespace where place the deployment and pods
   labels:
-    app: automatisch       # < label for tagging and reference
+    app: automatisch-redis       # < label for tagging and reference
 spec:
   replicas: 1           # < number of pods to deploy
   selector:
