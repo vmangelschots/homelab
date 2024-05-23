@@ -32,6 +32,6 @@ spec:
           value: "3000"
         volumeMounts:
           - mountPath: /data
-           name: actual-data
+            name: actual-data
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
