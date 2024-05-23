@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: actual
+spec:
+  selector:
+    matchLabels:
+      app: actual
+      release: actual
+  template:
+    metadata:
+      labels:
+        app: actual
+        release: actual
+    spec:
+      containers:
+      - image: actualbudget/actual-server:latest
+        imagePullPolicy: Always
+        name: actual
+        ports:
+        - containerPort: 5006
+          name: actual
+          protocol: TCP
+        env:
+        - name: PUID
+          value: "3000"
+        - name: PGID
+          value: "3000"
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30

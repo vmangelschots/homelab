@@ -1,0 +1,19 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: actual-ingress
+  namespace: actual
+  annotations: 
+    kubernetes.io/ingress.class: traefik-external
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`actual.mangelschots.org`)
+      kind: Rule
+      services:
+        - name: actual-service
+          port: 5006
+  tls:
+    secretName: olympus-mangelschots-org-tls
