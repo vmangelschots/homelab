@@ -13,6 +13,10 @@ spec:
         app: actual
         release: actual
     spec:
+     volumes:
+      - name: actual-data  # < linkname of the volume for the pvc
+        hostPath:
+          path: /mnt/k3s/actual-data # < pvc name we created in the previous yaml
       containers:
       - image: actualbudget/actual-server:latest
         imagePullPolicy: Always
@@ -26,5 +30,8 @@ spec:
           value: "3000"
         - name: PGID
           value: "3000"
+        volumeMounts:
+          - mountPath: /data
+           name: actual-data
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
