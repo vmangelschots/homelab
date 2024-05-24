@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: scrumpoker
+spec:
+  selector:
+    matchLabels:
+      app: scrumpoker
+      release: scrumpoker
+  template:
+    metadata:
+      labels:
+        app: scrumpoker
+        release: scrumpoker
+    spec:
+      volumes:
+      - name: scrumpoker-data  # < linkname of the volume for the pvc
+        hostPath:
+          path: /mnt/k3s/scrumpoker-data # < pvc name we created in the previous yaml
+      containers:
+      - image:  axeleroy/self-host-planning-poker:latest
+        imagePullPolicy: Always
+        name: scrumpoker
+        ports:
+        - containerPort: 8000
+          name: scrumpoker
+          protocol: TCP
+        env:
+        - name: PUID
+          value: "3000"
+        - name: PGID
+          value: "3000"
+        volumeMounts:
+          - mountPath: /data
+            name: scrumpoker-data
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30

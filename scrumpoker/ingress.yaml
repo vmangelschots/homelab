@@ -1,0 +1,19 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: scrumpoker-ingress
+  namespace: scrumpoker
+  annotations: 
+    kubernetes.io/ingress.class: traefik-external
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`scrumpoker.mangelschots.org`)
+      kind: Rule
+      services:
+        - name: scrumpoker-service
+          port: 5006
+  tls:
+    secretName: scrumpoker-mangelschots-org-tls
