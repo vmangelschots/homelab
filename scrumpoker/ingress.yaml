@@ -14,6 +14,6 @@ spec:
       kind: Rule
       services:
         - name: scrumpoker-service
-          port: 5006
+          port: 8000
   tls:
     secretName: scrumpoker-mangelschots-org-tls
