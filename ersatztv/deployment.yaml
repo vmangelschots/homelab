@@ -1,15 +1,15 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: erzatztv        # < name of the deployment
-  namespace: erzatztv   # < namespace where place the deployment and pods
+  name: ersatztv        # < name of the deployment
+  namespace: ersatztv   # < namespace where place the deployment and pods
   labels:
-    app: erzatztv      # < label for tagging and reference
+    app: ersatztv      # < label for tagging and reference
 spec:
   replicas: 1           # < number of pods to deploy
   selector:
     matchLabels:
-      app: erzatztv
+      app: ersatztv
   strategy:
     rollingUpdate:
       maxSurge: 0       # < The number of pods that can be created above the desired amount of pods during an update
@@ -18,27 +18,27 @@ spec:
   template:
     metadata:
       labels:
-        app: erzatztv
+        app: ersatztv
     spec:
       volumes:
-      - name: erzatztv-config  # < linkname of the volume for the pvc
+      - name: ersatztv-config  # < linkname of the volume for the pvc
         hostPath:
-          path: /mnt/k3s/erzatztv-config # < pvc name we created in the previous yaml
-      - name: erzatztv-series
+          path: /mnt/k3s/ersatztv-config # < pvc name we created in the previous yaml
+      - name: ersatztv-series
         hostPath:
           path: /mnt/series
-      - name: erzatztv-movies
+      - name: ersatztv-movies
         hostPath:
           path: /mnt/movies 
-      - name: erzatztv-dutchmovies
+      - name: ersatztv-dutchmovies
         hostPath:
           path: /mnt/nederlandse_films
-      - name: erzatztv-transcode
+      - name: ersatztv-transcode
         hostPath: 
-          path: /dev/shm/erzatztv
+          path: /dev/shm/ersatztv
       containers:
       - image: jasongdove/ersatztv:latest # < the name of the docker image we will use
-        name: erzatztv                      # < name of container
+        name: ersatztv                      # < name of container
         imagePullPolicy: Always             # < always use the latest image when creating container/pod
         
         env:                                # < the environment variables required (see container documentation)
