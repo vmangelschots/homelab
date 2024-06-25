@@ -1,0 +1,66 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: erzatstv        # < name of the deployment
+  namespace: erzatstv   # < namespace where place the deployment and pods
+  labels:
+    app: erzatstv      # < label for tagging and reference
+spec:
+  replicas: 1           # < number of pods to deploy
+  selector:
+    matchLabels:
+      app: erzatstv
+  strategy:
+    rollingUpdate:
+      maxSurge: 0       # < The number of pods that can be created above the desired amount of pods during an update
+      maxUnavailable: 1 # < The number of pods that can be unavailable during the update process
+    type: RollingUpdate # < New pods are added gradually, and old pods are terminated gradually
+  template:
+    metadata:
+      labels:
+        app: erzatstv
+    spec:
+      volumes:
+      - name: erzatstv-config  # < linkname of the volume for the pvc
+        hostPath:
+          path: /mnt/k3s/erzatstv-config # < pvc name we created in the previous yaml
+      - name: erzatstv-series
+        hostPath:
+          path: /mnt/series
+      - name: erzatstv-movies
+        hostPath:
+          path: /mnt/movies 
+      - name: erzatstv-dutchmovies
+        hostPath:
+          path: /mnt/nederlandse_films
+      - name: erzatstv-transcode
+        hostPath: 
+          path: /dev/shm/erzatstv
+      containers:
+      - image: jasongdove/ersatztv:latest # < the name of the docker image we will use
+        name: erzatstv                      # < name of container
+        imagePullPolicy: Always             # < always use the latest image when creating container/pod
+        
+        env:                                # < the environment variables required (see container documentation)
+        - name: PGID
+          value: "3000" # < group "user"
+        - name: PUID
+          value: "3000" # < user "docker"
+        - name: TZ
+          value: Europe/Brussels
+
+        ports:                              # < the ports required (see container documentation)
+         - containerPort: 8096
+           name: webinterface
+           protocol: TCP
+        volumeMounts:                       # < the volume mount in the container. Look at the relation volumelabel->pvc->pv
+         - mountPath: /root/.local/share/ersatztv              # < mount location in the container
+           name: ersatztv-config               # < volumelabel configured earlier in the yaml file
+         - mountPath: /media/series
+           name: ersatztv-series
+         - mountPath: /media/movies
+           name: ersatztv-movies
+         - mountPath: /media/dutch-movies
+           name: ersatztv-dutchmovies
+         - mountPath: /root/.local/share/etv-transcode
+           name: ersatztv-transcode

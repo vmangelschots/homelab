@@ -1,0 +1,19 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: erzatztv-ingress
+  namespace: erzatztv
+  annotations: 
+    kubernetes.io/ingress.class: traefik-external
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`tv.mangelschots.org`)
+      kind: Rule
+      services:
+        - name: erzatztv-service
+          port: 8409
+  tls:
+    secretName: movies-mangelschots-org-tls
