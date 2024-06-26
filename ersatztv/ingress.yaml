@@ -15,5 +15,8 @@ spec:
       services:
         - name: ersatztv-service
           port: 8409
+      middlewares:
+        - name: traefik-dashboard-basicauth
+          namespace: traefik
   tls:
     secretName: movies-mangelschots-org-tls
