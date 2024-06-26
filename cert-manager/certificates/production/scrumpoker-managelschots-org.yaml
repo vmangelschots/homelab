@@ -1,0 +1,14 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: scrumpoker-mangelschots-org
+  namespace: scrumpoker 
+spec:
+  secretName: scrumpoker-mangelschots-org-tls
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  commonName: "scrumpoker.mangelschots.org"
+  dnsNames:
+  - "scrumpoker.mangelschots.org"

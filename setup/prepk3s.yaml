@@ -16,9 +16,13 @@
       - { share: /mnt/large_pool/songs-kim, mount: /mnt/kim-songs}
       # Add more NFS shares here as needed
   tasks:
+    - name: Install sops on remote host
+      ansible.builtin.include_role:
+        name: sops
     - name: Install dependencies
       apt:
         pkg:
+          - age
           - nfs-common
           - cifs-utils
           - open-iscsi
