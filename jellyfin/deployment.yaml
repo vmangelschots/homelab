@@ -74,5 +74,5 @@ spec:
            name: jellyfin-transcode
          - mountPath: /dev/dri/card0
            name: card
-          - mountPath: /dev/dri/renderD128
+         - mountPath: /dev/dri/renderD128
            name: renderer
