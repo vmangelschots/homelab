@@ -21,7 +21,7 @@ spec:
         app: jellyfin
     spec:
       volumes:
-      - card:
+      - name: card
         hostPath:
           path: /dev/dri/card0
       - name: jellyfin-config  # < linkname of the volume for the pvc
