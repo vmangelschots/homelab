@@ -42,8 +42,7 @@ spec:
       - name: jellyfin-transcode
         hostPath: 
           path: /dev/shm/jellyfin
-      securityContext:
-        privileged: true
+
       containers:
       - image: lscr.io/linuxserver/jellyfin:latest # < the name of the docker image we will use
         name: jellyfin                      # < name of container
@@ -77,3 +76,5 @@ spec:
            name: card
          - mountPath: /dev/dri/renderD128
            name: renderer
+        securityContext:
+          privileged: true
