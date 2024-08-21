@@ -21,6 +21,9 @@ spec:
         app: jellyfin
     spec:
       volumes:
+      - card:
+        hostPath:
+          path: /dev/dri/card0
       - name: jellyfin-config  # < linkname of the volume for the pvc
         hostPath:
           path: /mnt/k3s/jellyfin-config # < pvc name we created in the previous yaml
@@ -65,3 +68,5 @@ spec:
            name: jellyfin-dutchmovies
          - mountPath: /transcode
            name: jellyfin-transcode
+         - mountPath: /dev/dri/card0
+           name: card
