@@ -44,7 +44,7 @@ spec:
           path: /dev/shm/jellyfin
 
       containers:
-      - image: linuxserver/jellyfin:latest #lscr.io/linuxserver/jellyfin:nightly-version-2024081905ubu2404 # < the name of the docker image we will use
+      - image: linuxserver/jellyfin:nightly-version-2024101405ubu2404 #lscr.io/linuxserver/jellyfin:nightly-version-2024081905ubu2404 # < the name of the docker image we will use
         name: jellyfin                      # < name of container
         imagePullPolicy: Always             # < always use the latest image when creating container/pod
         
