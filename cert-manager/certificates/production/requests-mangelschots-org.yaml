@@ -3,7 +3,7 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: requests-mangelschots-org
-  namespace: traefik
+  namespace: jellyseerr 
 spec:
   secretName: requests-mangelschots-org-tls
   issuerRef:
