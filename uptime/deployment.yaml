@@ -40,5 +40,5 @@ spec:
       terminationGracePeriodSeconds: 30
       volumes:
       - name: config
-        hostPath:
-          path: /mnt/k3s/uptime-kuma
+        persistentVolumeClaim:
+          claimName: uptime-config-claim-nfs
