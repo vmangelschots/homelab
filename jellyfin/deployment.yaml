@@ -47,7 +47,9 @@ spec:
       - image: lscr.io/linuxserver/jellyfin:latest # < the name of the docker image we will use
         name: jellyfin                      # < name of container
         imagePullPolicy: Always             # < always use the latest image when creating container/pod
-        
+        group_add: # by id as these may not exist within the container. Needed to provide permissions to the VAAPI Devices
+      - '107' #render
+      - '44' #video
         env:                                # < the environment variables required (see container documentation)
         - name: PGID
           value: "3000" # < group "user"
