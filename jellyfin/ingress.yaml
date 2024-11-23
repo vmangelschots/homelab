@@ -15,5 +15,8 @@ spec:
       services:
         - name: jellyfin-service
           port: 8096
+          scheme: http
+          responseForwarding:
+            flushInterval: 100ms
   tls:
     secretName: movies-mangelschots-org-tls
