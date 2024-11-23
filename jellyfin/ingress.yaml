@@ -21,7 +21,5 @@ spec:
           scheme: http
           responseForwarding:
             flushInterval: 100ms
-      middlewares:
-        - name: jellyfin-websocket
   tls:
     secretName: movies-mangelschots-org-tls
