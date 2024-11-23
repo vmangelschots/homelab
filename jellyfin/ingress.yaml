@@ -6,7 +6,7 @@ metadata:
   namespace: jellyfin
   annotations: 
     kubernetes.io/ingress.class: traefik-external
-        traefik.ingress.kubernetes.io/websocket-timeout: "8h"
+    traefik.ingress.kubernetes.io/websocket-timeout: "8h"
     traefik.ingress.kubernetes.io/client-body-timeout: "8h"
     traefik.ingress.kubernetes.io/client-header-timeout: "8h"
 spec:
