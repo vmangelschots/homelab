@@ -4,5 +4,8 @@ metadata:
   name: jellyfin-websocket
   namespace: jellyfin
 spec:
-  forwardedHeaders:
-    insecure: true
+  headers:
+      X-Forwarded-Proto: "https"
+      X-Forwarded-Host: "movies.mangelschots.org"
+
+    
