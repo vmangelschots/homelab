@@ -59,6 +59,12 @@ spec:
          - containerPort: 8096
            name: webinterface
            protocol: TCP
+         - containerPort: 1900
+           name: dlna-udp
+           protocol: UDP
+         - containerPort: 7359
+           name: discovery-udp
+           protocol: UDP  
         volumeMounts:                       # < the volume mount in the container. Look at the relation volumelabel->pvc->pv
          - mountPath: /config               # < mount location in the container
            name: jellyfin-config               # < volumelabel configured earlier in the yaml file
