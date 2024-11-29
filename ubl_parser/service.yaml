@@ -18,7 +18,7 @@ metadata:
   namespace: ublparser       # < namespace where place the deployment and pods
 spec:
   selector:
-    app: ublparser           # < reference to the deployment (connects with this deployment)
+    app: ublparser-frontend           # < reference to the deployment (connects with this deployment)
   ports:
     - name: http-frontend
       protocol: TCP
