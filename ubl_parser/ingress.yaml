@@ -17,7 +17,7 @@ spec:
           port: 5000
   tls:
     secretName: mangelschots-org-tls
---
+
 ---
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
