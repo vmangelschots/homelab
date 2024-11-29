@@ -1,0 +1,19 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: gitea-ingress
+  namespace: gitea
+  annotations: 
+    kubernetes.io/ingress.class: traefik-internal
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`gitea.olympus.mangelschots.org`)
+      kind: Rule
+      services:
+        - name: gitea-service
+          port: 3000
+  tls:
+    secretName: olympus-mangelschots-org-tls

@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: gitea-service    # < name of the service
+  namespace: gitea       # < namespace where place the deployment and pods
+spec:
+  selector:
+    app: gitea           # < reference to the deployment (connects with this deployment)
+  ports:
+    - name: http
+      protocol: TCP
+      port: 3000
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: gitea-ssh       # < name of the service
+  namespace: gitea      # < namespace where to place service
+  annotations:
+    metallb.universe.tf/allow-shared-ip: gitea # # < annotation name to combine the Service IP, make sure it's same name as in the service UDP yaml
+spec:
+  selector:
+    app: gitea          # < reference to the deployment (connects the service with the deployment)
+  ports:
+  - port: 2222             # < port to open on the outside on the server
+    targetPort: 22       # < targetport. port on the pod to passthrough
+    name: ssh         # < reference name for the port in the deployment yaml
+    protocol: TC{}
+  type: LoadBalancer
+  loadBalancerIP: 172.21.3.17 # < IP to access your jellyfinserver. Should be one from the MetalLB range and the same as the UDP yaml
+  sessionAffinity: ClientIP # This is necessary for multi-replica deployments

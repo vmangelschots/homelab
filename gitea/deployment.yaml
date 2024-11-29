@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gitea        # < name of the deployment
+  namespace: gitea   # < namespace where place the deployment and pods
+  labels:
+    app: gitea       # < label for tagging and reference
+spec:
+  replicas: 1           # < number of pods to deploy
+  selector:
+    matchLabels:
+      app: gitea
+  strategy:
+    rollingUpdate:
+      maxSurge: 0       # < The number of pods that can be created above the desired amount of pods during an update
+      maxUnavailable: 1 # < The number of pods that can be unavailable during the update process
+    type: RollingUpdate # < New pods are added gradually, and old pods are terminated gradually
+  template:
+    metadata:
+      labels:
+        app: gitea
+    spec:
+      volumes:
+      - name: gitea-config  # < linkname of the volume for the pvc
+        hostPath:
+          path: /mnt/k3s/gitea-config # < pvc name we created in the previous yaml
+      - name: gitea-data  # < linkname of the volume for the pvc
+        hostPath:
+          path: /mnt/k3s/gitea-data # < pvc name we created in the previous yaml
+      - name: gitea-ssl
+        secret:
+          secretName: olympus-mangelschots-org-tls # < the name ssl certificate, will be created in the ingress yaml
+      containers:
+      - image: gitea/gitea:1.22.4-rootless # < the name of the docker image we will use
+        name: gitea                      # < name of container
+        imagePullPolicy: Always             # < always use the latest image when creating container/pod
+        env:                                # < the environment variables required (see container documentation)
+        - name: PGID
+          value: "3000" # < group "user"
+        - name: PUID
+          value: "3000" # < user "docker"
+        - name: TZ
+          value: Europe/Brussels
+        ports:                              # < the ports required (see container documentation)
+         - containerPort: 3000
+           name: http
+           protocol: TCP
+         - containerPort: 2222
+           name: ssh
+           protocol: TCP
+        volumeMounts:                       # < the volume mount in the container. Look at the relation volumelabel->pvc->pv
+         - mountPath: /etc/gitea               # < mount location in the container
+           name: gitea-config               # < volumelabel configured earlier in the yaml file
+           subPath: config                  # < subfolder in the nfs share to be mounted
+        volumeMounts:                       # < the volume mount in the container. Look at the relation volumelabel->pvc->pv
+         - mountPath: /var/lib/gitea              # < mount location in the container
+           name: gitea-data               # < volumelabel configured earlier in the yaml file
+           subPath: data                 # < subfolder in the nfs share to be mounted
