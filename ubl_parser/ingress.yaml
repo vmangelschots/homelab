@@ -16,7 +16,7 @@ spec:
         - name: ublparser-backend-service
           port: 5000
   tls:
-    secretName: mangelschots-org-tls
+    secretName: ublparser-backend-mangelschots-org-tls
 
 ---
 apiVersion: traefik.containo.us/v1alpha1
@@ -36,4 +36,4 @@ spec:
         - name: ublparser-service
           port: 5000
   tls:
-    secretName: mangelschots-org-tls
+    secretName: ublparser-mangelschots-org-tls
