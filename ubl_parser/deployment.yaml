@@ -57,6 +57,6 @@ spec:
         name: ublparser-frontend                      # < name of container
         imagePullPolicy: Always             # < always use the latest image when creating container/pod
         ports:                              # < the ports required (see container documentation)
-         - containerPort: 3000
-           name: http
+         - containerPort: 5000
+           name: http-frontend
            protocol: TCP

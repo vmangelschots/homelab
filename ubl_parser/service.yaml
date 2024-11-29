@@ -20,6 +20,6 @@ spec:
   selector:
     app: ublparser           # < reference to the deployment (connects with this deployment)
   ports:
-    - name: http
+    - name: http-frontend
       protocol: TCP
       port: 5000
