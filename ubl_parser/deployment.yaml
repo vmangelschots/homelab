@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ubl_parser        # < name of the deployment
+  namespace: ubl_parser   # < namespace where place the deployment and pods
+  labels:
+    app: ubl_parser       # < label for tagging and reference
+spec:
+  replicas: 1           # < number of pods to deploy
+  selector:
+    matchLabels:
+      app: ubl_parser
+  strategy:
+    rollingUpdate:
+      maxSurge: 0       # < The number of pods that can be created above the desired amount of pods during an update
+      maxUnavailable: 1 # < The number of pods that can be unavailable during the update process
+    type: RollingUpdate # < New pods are added gradually, and old pods are terminated gradually
+  template:
+    metadata:
+      labels:
+        app: ubl_parser
+    spec:
+      containers:
+      - image: gitea.olympus.mangelschots.org/blackecom/ubl_parser_backend # < the name of the docker image we will use
+        name: ubl_parser_backend                      # < name of container
+        imagePullPolicy: Always             # < always use the latest image when creating container/pod
+        ports:                              # < the ports required (see container documentation)
+         - containerPort: 5000
+           name: http
+           protocol: TCP
