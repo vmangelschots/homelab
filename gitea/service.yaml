@@ -25,7 +25,7 @@ spec:
   - port: 2222             # < port to open on the outside on the server
     targetPort: 22       # < targetport. port on the pod to passthrough
     name: ssh         # < reference name for the port in the deployment yaml
-    protocol: TC{}
+    protocol: TCP
   type: LoadBalancer
   loadBalancerIP: 172.21.3.17 # < IP to access your jellyfinserver. Should be one from the MetalLB range and the same as the UDP yaml
   sessionAffinity: ClientIP # This is necessary for multi-replica deployments
