@@ -21,7 +21,7 @@ spec:
         app: ublparser
     spec:
       containers:
-      - image: gitea.olympus.mangelschots.org/blackecom/ubl_parser_backend # < the name of the docker image we will use
+      - image: gitea.olympus.mangelschots.org/blackcom/ubl_parser_backend # < the name of the docker image we will use
         name: ublparser-backend                      # < name of container
         imagePullPolicy: Always             # < always use the latest image when creating container/pod
         ports:                              # < the ports required (see container documentation)
