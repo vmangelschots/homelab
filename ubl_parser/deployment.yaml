@@ -28,6 +28,7 @@ spec:
          - containerPort: 5000
            name: http
            protocol: TCP
+           
 --
 apiVersion: apps/v1
 kind: Deployment
