@@ -1,15 +1,15 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ubl_parser        # < name of the deployment
-  namespace: ubl_parser   # < namespace where place the deployment and pods
+  name: ublparser        # < name of the deployment
+  namespace: ublparser   # < namespace where place the deployment and pods
   labels:
-    app: ubl_parser       # < label for tagging and reference
+    app: ublparser       # < label for tagging and reference
 spec:
   replicas: 1           # < number of pods to deploy
   selector:
     matchLabels:
-      app: ubl_parser
+      app: ublparser
   strategy:
     rollingUpdate:
       maxSurge: 0       # < The number of pods that can be created above the desired amount of pods during an update
@@ -18,11 +18,11 @@ spec:
   template:
     metadata:
       labels:
-        app: ubl_parser
+        app: ublparser
     spec:
       containers:
       - image: gitea.olympus.mangelschots.org/blackecom/ubl_parser_backend # < the name of the docker image we will use
-        name: ubl_parser_backend                      # < name of container
+        name: ublparser_backend                      # < name of container
         imagePullPolicy: Always             # < always use the latest image when creating container/pod
         ports:                              # < the ports required (see container documentation)
          - containerPort: 5000
