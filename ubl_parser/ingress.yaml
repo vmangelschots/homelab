@@ -2,10 +2,30 @@
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
+  name: ublparser-backend-ingress
+  namespace: ublparser
+  annotations: 
+    kubernetes.io/ingress.class: traefik-external
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`ublparser-backend.mangelschots.org`)
+      kind: Rule
+      services:
+        - name: ublparser-backend-service
+          port: 5000
+  tls:
+    secretName: mangelschots-org-tls
+--
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
   name: ublparser-ingress
   namespace: ublparser
   annotations: 
-    kubernetes.io/ingress.class: traefik-internal
+    kubernetes.io/ingress.class: traefik-external
 spec:
   entryPoints:
     - websecure
@@ -14,6 +34,6 @@ spec:
       kind: Rule
       services:
         - name: ublparser-service
-          port: 5000
+          port: 3000
   tls:
-    secretName: olympus-mangelschots-org-tls
+    secretName: mangelschots-org-tls
