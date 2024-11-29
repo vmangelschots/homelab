@@ -16,4 +16,4 @@ spec:
         - name: radarr-service
           port: 7878
   tls:
-    secretName: olympus-mangelschots-org-tls
+    secretName: -mangelschots-org-tls

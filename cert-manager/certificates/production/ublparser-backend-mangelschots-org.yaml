@@ -1,0 +1,14 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: ublparser-backend-mangelschots-org
+  namespace: ublparser
+spec:
+  secretName: ublparser-backend-mangelschots-org-tls
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  commonName: "ublparser-backend.mangelschots.org"
+  dnsNames:
+  - "ublparser-backend.mangelschots.org"
