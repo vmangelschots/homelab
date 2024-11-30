@@ -27,9 +27,9 @@ spec:
       - name: card
         hostPath:
           path: /dev/dri/card0
-      - name: jellyfin-config
-        persistentVolumeClaim:
-          claimName: nfs-pvc-jellyfin-config
+      - name: jellyfin-config  # < linkname of the volume for the pvc
+        hostPath:
+          path: /mnt/k3s/jellyfin-config #
       - name: jellyfin-series
         hostPath:
           path: /mnt/series
