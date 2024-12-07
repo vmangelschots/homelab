@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: code        # < name of the deployment
+  namespace: code   # < namespace where place the deployment and pods
+  labels:
+    app: code      # < label for tagging and reference
+spec:
+  replicas: 1           # < number of pods to deploy
+  selector:
+    matchLabels:
+      app: code
+  strategy:
+    rollingUpdate:
+      maxSurge: 0       # < The number of pods that can be created above the desired amount of pods during an update
+      maxUnavailable: 1 # < The number of pods that can be unavailable during the update process
+    type: RollingUpdate # < New pods are added gradually, and old pods are terminated gradually
+  template:
+    metadata:
+      labels:
+        app: code
+    spec:
+      volumes:
+      - name: code-config  # < linkname of the volume for the pvc
+        hostPath:
+          path: /mnt/k3s/code-config #
+      containers:
+      - image: lscr.io/linuxserver/code-server:latest # < the name of the docker image we will use
+        name: code                      # < name of container
+        imagePullPolicy: Always             # < always use the latest image when creating container/pod
+        env:                                # < the environment variables required (see container documentation)
+        - name: PGID
+          value: "568" # < group "user"
+        - name: PUID
+          value: "568" # < user "docker"
+        - name: TZ
+          value: Europe/Brussels
+
+        ports:                              # < the ports required (see container documentation)
+         - containerPort: 8443
+           name: webinterface
+           protocol: TCP
+        volumeMounts:                       # < the volume mount in the container. Look at the relation volumelabel->pvc->pv
+         - mountPath: /config               # < mount location in the container
+           name: code-config               # < volumelabel configured earlier in the yaml file
+           subPath: config                  # < subfolder in the nfs share to be mounted

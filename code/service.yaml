@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: code-service    # < name of the service
+  namespace: code # < namespace where place the deployment and pods
+spec:
+  selector:
+    app: code # < reference to the deployment (connects with this deployment)
+  ports:
+    - name: webinterface
+      protocol: TCP
+      port: 8443
