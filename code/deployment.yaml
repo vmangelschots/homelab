@@ -35,6 +35,8 @@ spec:
           value: "568" # < user "docker"
         - name: TZ
           value: Europe/Brussels
+        - name: PROXY_DOMAIN
+          value: code.olympus.mangelschots.org
 
         ports:                              # < the ports required (see container documentation)
          - containerPort: 8443
