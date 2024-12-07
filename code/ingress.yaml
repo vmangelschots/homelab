@@ -16,7 +16,7 @@ spec:
     - match: Host(`code.olympus.mangelschots.org`)
       kind: Rule
       services:
-        - name: code-service
+        - name: webinterface
           port: 8443
           scheme: http
           responseForwarding:
