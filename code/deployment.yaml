@@ -35,7 +35,8 @@ spec:
           value: "568" # < user "docker"
         - name: TZ
           value: Europe/Brussels
-
+        - name: SUDO_PASSWORD
+          value: placeholder
 
         ports:                              # < the ports required (see container documentation)
          - containerPort: 8443
