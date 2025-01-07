@@ -1,0 +1,14 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: paperless-ngx-mangelschots-org
+  namespace: paperless-ngx 
+spec:
+  secretName: paperless-ngx-mangelschots-org-tls
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  commonName: "paperless.mangelschots.org"
+  dnsNames:
+  - "paperless.mangelschots.org"

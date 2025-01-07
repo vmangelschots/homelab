@@ -11,4 +11,5 @@ spec:
     kind: ClusterIssuer
   commonName: "*.mangelschots.org"
   dnsNames:
+  - "mangelschots.org"
   - "*.mangelschots.org"
