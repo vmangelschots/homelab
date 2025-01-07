@@ -28,7 +28,7 @@ spec:
         hostPath:
           path: /mnt/k3s/paperless-ngx-config # < pvc name we created in the previous yaml
       containers:
-      - image: lscr.io/linuxserver/paperless-ngx:latest # < the name of the docker image we will use
+      - image: ghcr.io/paperless-ngx/paperless-ngx:latest # < the name of the docker image we will use
         name: paperless-ngx                      # < name of container
         imagePullPolicy: Always             # < always use the latest image when creating container/pod
         env:                                # < the environment variables required (see container documentation)
@@ -39,7 +39,7 @@ spec:
         - name: TZ
           value: Europe/Brussels
         ports:                              # < the ports required (see container documentation)
-         - containerPort: 80
+         - containerPort: 8000
            name: http-80
            protocol: TCP
         volumeMounts:                       # < the volume mount in the container. Look at the relation volumelabel->pvc->pv
