@@ -1,0 +1,19 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: paperless-ngx-ingress
+  namespace: paperless-ngx
+  annotations: 
+    kubernetes.io/ingress.class: traefik-external
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`vault.mangelschots.org`)
+      kind: Rule
+      services:
+        - name: paperless-ngx-service
+          port: 80
+  tls:
+    secretName: paperless-ngx-mangelschots-org-tls
