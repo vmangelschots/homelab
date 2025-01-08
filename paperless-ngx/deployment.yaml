@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: paperless-ngx        # < name of the deployment
+  name: paperless-ngx-mariadb        # < name of the deployment
   namespace: paperless-ngx   # < namespace where place the deployment and pods
   labels:
     app: paperless-ngx-mariadb       # < label for tagging and reference
