@@ -102,7 +102,8 @@ spec:
         volumeMounts:                       # < the volume mount in the container. Look at the relation volumelabel->pvc->pv
          - mountPath: /var/lib/mysql               # < mount location in the container
            name:  mariadb-data             # < volumelabel configured earlier in the yaml file
-
+        securityContext:
+          privileged: true
 ---
 apiVersion: apps/v1
 kind: Deployment
