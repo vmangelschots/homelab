@@ -83,3 +83,20 @@ spec:
     resources:
      requests:
       storage: 500Mi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: nfs-pvc-paperless-redis
+    namespace: paperless-ngx
+    labels:
+      app: paperless-ngx
+    annotations:
+      volume.beta.kubernetes.io/storage-class: "freenas-nfs-csi"
+spec:
+    storageClassName: freenas-nfs-csi
+    accessModes:
+     - ReadWriteOnce
+    resources:
+     requests:
+      storage: 500Mi
