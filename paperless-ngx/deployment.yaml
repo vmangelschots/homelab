@@ -40,9 +40,9 @@ spec:
         imagePullPolicy: Always             # < always use the latest image when creating container/pod
         env:                                # < the environment variables required (see container documentation)
         - name: PGID
-          value: "3000" # < group "user"
+          value: "568" # < group "user"
         - name: PUID
-          value: "3000" # < user "docker"
+          value: "568" # < user "docker"
         - name: TZ
           value: Europe/Brussels
         ports:                              # < the ports required (see container documentation)
