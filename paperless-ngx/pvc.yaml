@@ -26,6 +26,7 @@ metadata:
     annotations:
       volume.beta.kubernetes.io/storage-class: "freenas-nfs-csi"
 spec:
+    Reclaim Policy:  Retain
     storageClassName: freenas-nfs-csi
     accessModes:
      - ReadWriteOnce
@@ -43,6 +44,7 @@ metadata:
     annotations:
       volume.beta.kubernetes.io/storage-class: "freenas-nfs-csi"
 spec:
+    Reclaim Policy:  Retain
     storageClassName: freenas-nfs-csi
     accessModes:
      - ReadWriteOnce
@@ -60,6 +62,7 @@ metadata:
     annotations:
       volume.beta.kubernetes.io/storage-class: "freenas-nfs-csi"
 spec:
+    Reclaim Policy:  Retain
     storageClassName: freenas-nfs-csi
     accessModes:
      - ReadWriteOnce
@@ -77,6 +80,7 @@ metadata:
     annotations:
       volume.beta.kubernetes.io/storage-class: "freenas-nfs-csi"
 spec:
+    Reclaim Policy:  Retain
     storageClassName: freenas-nfs-csi
     accessModes:
      - ReadWriteOnce
@@ -94,6 +98,7 @@ metadata:
     annotations:
       volume.beta.kubernetes.io/storage-class: "freenas-nfs-csi"
 spec:
+    Reclaim Policy:  Retain
     storageClassName: freenas-nfs-csi
     accessModes:
      - ReadWriteOnce
