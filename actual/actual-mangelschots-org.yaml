@@ -1,0 +1,14 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: actual-mangelschots-org
+  namespace: actual 
+spec:
+  secretName: actual-mangelschots-org-tls
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  commonName: "actual.mangelschots.org"
+  dnsNames:
+  - "actual.mangelschots.org"
