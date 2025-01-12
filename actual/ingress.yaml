@@ -16,4 +16,4 @@ spec:
         - name: actual-service
           port: 5006
   tls:
-    secretName: mangelschots-org-tls
+    secretName: actual-mangelschots-org-tls
