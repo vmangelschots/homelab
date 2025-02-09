@@ -20,6 +20,7 @@ spec:
       labels:
         app: grocy
     spec:
+      volumes:
       - name: grocy-config  # < linkname of the volume for the pvc
         hostPath:
           path: /mnt/k3s/grocy-config #
