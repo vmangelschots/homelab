@@ -5,7 +5,7 @@ metadata:
   name: grocy-ingress
   namespace: grocy
   annotations: 
-    kubernetes.io/ingress.class: traefik-external
+    kubernetes.io/ingress.class: traefik-internal
     traefik.ingress.kubernetes.io/websocket-timeout: "8h"
     traefik.ingress.kubernetes.io/client-body-timeout: "8h"
     traefik.ingress.kubernetes.io/client-header-timeout: "8h"
