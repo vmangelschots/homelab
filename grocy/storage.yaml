@@ -1,0 +1,17 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: nfs-pvc-grocy-config
+    namespace: grocy
+    labels:
+      app: grocy
+    annotations:
+      volume.beta.kubernetes.io/storage-class: "freenas-nfs-csi"
+spec:
+    storageClassName: freenas-nfs-csi
+    accessModes:
+     - ReadWriteOnce
+    resources:
+     requests:
+      storage: 1Gi

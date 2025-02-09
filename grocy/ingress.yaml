@@ -1,0 +1,25 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: grocy-ingress
+  namespace: grocy
+  annotations: 
+    kubernetes.io/ingress.class: traefik-external
+    traefik.ingress.kubernetes.io/websocket-timeout: "8h"
+    traefik.ingress.kubernetes.io/client-body-timeout: "8h"
+    traefik.ingress.kubernetes.io/client-header-timeout: "8h"
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`grocy.olympus.mangelschots.org`)
+      kind: Rule
+      services:
+        - name: grocy-service
+          port: 80
+          scheme: http
+          responseForwarding:
+            flushInterval: 100ms
+  tls:
+    secretName: olympus-mangelschots-org-tls
