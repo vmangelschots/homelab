@@ -33,21 +33,11 @@ spec:
       - name: ersatztv-dutchmovies
         hostPath:
           path: /mnt/nederlandse_films
-      - name: ersatztv-transcode
-        hostPath: 
-          path: /dev/shm/ersatztv
       containers:
       - image: jasongdove/ersatztv:latest-vaapi # < the name of the docker image we will use
         name: ersatztv                      # < name of container
         imagePullPolicy: Always             # < always use the latest image when creating container/pod
         
-        env:                                # < the environment variables required (see container documentation)
-        - name: PGID
-          value: "3000" # < group "user"
-        - name: PUID
-          value: "3000" # < user "docker"
-        - name: TZ
-          value: Europe/Brussels
 
         ports:                              # < the ports required (see container documentation)
          - containerPort: 8096
@@ -62,5 +52,3 @@ spec:
            name: ersatztv-movies
          - mountPath: /media/dutch-movies
            name: ersatztv-dutchmovies
-         - mountPath: /root/.local/share/etv-transcode
-           name: ersatztv-transcode
