@@ -34,7 +34,7 @@ spec:
         hostPath:
           path: /mnt/nederlandse_films
       containers:
-      - image: jasongdove/ersatztv:latest-vaapi # < the name of the docker image we will use
+      - image: jasongdove/ersatztv:latest # < the name of the docker image we will use
         name: ersatztv                      # < name of container
         imagePullPolicy: Always             # < always use the latest image when creating container/pod
         
