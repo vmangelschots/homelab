@@ -28,3 +28,6 @@ spec:
          - containerPort: 5000
            name: http-frontend
            protocol: TCP
+        env:
+          - name: ENVIRONMENT
+            value: "dev"
