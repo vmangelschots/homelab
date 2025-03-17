@@ -1,0 +1,19 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: mobdamatest-ingress
+  namespace: ublparser
+  annotations: 
+    kubernetes.io/ingress.class: traefik-external
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`mobdamatest.olympus.mangelschots.org`)
+      kind: Rule
+      services:
+        - name: mobdamatest-service
+          port: 5000
+  tls:
+    secretName: mangelschots-org-tls
