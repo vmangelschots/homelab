@@ -30,4 +30,4 @@ spec:
            protocol: TCP
         env:
           - name: ENVIRONMENT
-            value: "dev"
+            value: "prod"
