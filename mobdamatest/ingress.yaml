@@ -3,7 +3,7 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
   name: mobdamatest-ingress
-  namespace: ublparser
+  namespace: mobdamatest
   annotations: 
     kubernetes.io/ingress.class: traefik-external
 spec:
