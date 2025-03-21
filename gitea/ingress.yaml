@@ -17,3 +17,23 @@ spec:
           port: 3000
   tls:
     secretName: olympus-mangelschots-org-tls
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRouteTCP
+metadata:
+  name: gitea-ingress-shell
+  namespace: gitea
+  annotations: 
+    kubernetes.io/ingress.class: traefik-internal
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`gitea.olympus.mangelschots.org`)
+      kind: Rule
+      services:
+        - name: gitea-ssh
+          port: 2222
+  tls:
+    secretName: olympus-mangelschots-org-tls
