@@ -51,8 +51,7 @@ spec:
         volumeMounts:                       # < the volume mount in the container. Look at the relation volumelabel->pvc->pv
          - mountPath: /etc/gitea               # < mount location in the container
            name: gitea-config               # < volumelabel configured earlier in the yaml file
-           subPath: config                  # < subfolder in the nfs share to be mounted
-        volumeMounts:                       # < the volume mount in the container. Look at the relation volumelabel->pvc->pv
+           subPath: config                  # < subfolder in the nfs share to be mounte                     # < the volume mount in the container. Look at the relation volumelabel->pvc->pv
          - mountPath: /var/lib/gitea              # < mount location in the container
            name: gitea-data               # < volumelabel configured earlier in the yaml file
            subPath: data                 # < subfolder in the nfs share to be mounted
