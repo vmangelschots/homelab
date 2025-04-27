@@ -19,9 +19,10 @@ spec:
         hostPath:
           path: /mnt/k3s/modbusproxy-data # < pvc name we created in the previous yaml
       containers:
-      - args:
-        - -c
-        - /config/modbus-proxy.yml
+      - command: ["/bin/sh", "-c"]
+        args:
+          - mkdir -p /config/log && exec modbus-proxy serve -c /config/modbus-proxy.yml
+
         image: tiagocoutinho/modbus-proxy:latest
         imagePullPolicy: Always
         name: modbusproxy
