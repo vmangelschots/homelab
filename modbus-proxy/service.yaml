@@ -1,0 +1,19 @@
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: modbusproxy-service       # < name of the service
+  namespace: modbusproxy      # < namespace where to place service
+  annotations:
+    metallb.universe.tf/allow-shared-ip: modbusproxy # # < annotation name to combine the Service IP, make sure it's same name as in the service UDP yaml
+spec:
+  selector:
+    app: modbusproxy          # < reference to the deployment (connects the service with the deployment)
+  ports:
+  - port: 1502             # < port to open on the outside on the server
+    targetPort: 1502       # < targetport. port on the pod to passthrough
+    name: modbus1         # < reference name for the port in the deployment yaml
+    protocol: TCP
+  type: LoadBalancer
+  loadBalancerIP: 172.21.3.19 # < IP to access your jellyfinserver. Should be one from the MetalLB range and the same as the UDP yaml
+  sessionAffinity: ClientIP # This is necessary for multi-replica deployments
