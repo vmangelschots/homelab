@@ -20,7 +20,6 @@ spec:
           path: /mnt/k3s/modbusproxy-data # < pvc name we created in the previous yaml
       containers:
       - args:
-          - serve
           - -c
           - /config/modbus-proxy.yml
         image: tiagocoutinho/modbus-proxy:latest
