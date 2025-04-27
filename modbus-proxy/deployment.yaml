@@ -18,7 +18,10 @@ spec:
         hostPath:
           path: /mnt/k3s/modbusproxy-data # < pvc name we created in the previous yaml
       containers:
-      - image: tiagocoutinho/modbus-proxy:latest
+      - args:
+        - -c
+        - /config/modbus-proxy.yml
+        image: tiagocoutinho/modbus-proxy:latest
         imagePullPolicy: Always
         name: modbusproxy
         ports:
@@ -29,5 +32,6 @@ spec:
         volumeMounts:
           - mountPath: /config
             name: modbusproxy-data
+        
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
