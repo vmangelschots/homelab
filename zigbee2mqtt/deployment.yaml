@@ -15,10 +15,7 @@ spec:
       maxSurge: 0       # < The number of pods that can be created above the desired amount of pods during an update
       maxUnavailable: 1 # < The number of pods that can be unavailable during the update process
     type: RollingUpdate # < New pods are added gradually, and old pods are terminated gradually
-  volumes:
-      - name: zigbee2mqtt-data  # < linkname of the volume for the pvc
-        hostPath:
-          path: /mnt/k3s/zigbee2mqtt-data
+
   template:
     metadata:
       labels:
@@ -35,5 +32,8 @@ spec:
         volumeMounts:                       # < the volume mount in the container. Look at the relation volumelabel->pvc->pv
          - mountPath: /app/data               # < mount location in the container
            name: zigbee2mqtt-data   
-
+      volumes:
+        - name: zigbee2mqtt-data  # < linkname of the volume for the pvc
+          hostPath:
+            path: /mnt/k3s/zigbee2mqtt-data
       
