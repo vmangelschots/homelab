@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: zigbee2mqtt        # < name of the deployment
+  namespace: zigbee2mqtt   # < namespace where place the deployment and pods
+  labels:
+    app: zigbee2mqtt       # < label for tagging and reference
+spec:
+  replicas: 1           # < number of pods to deploy
+  selector:
+    matchLabels:
+      app: zigbee2mqtt
+  strategy:
+    rollingUpdate:
+      maxSurge: 0       # < The number of pods that can be created above the desired amount of pods during an update
+      maxUnavailable: 1 # < The number of pods that can be unavailable during the update process
+    type: RollingUpdate # < New pods are added gradually, and old pods are terminated gradually
+  volumes:
+      - name: zigbee2mqtt-data  # < linkname of the volume for the pvc
+        hostPath:
+          path: /mnt/k3s/zigbee2mqtt-data
+  template:
+    metadata:
+      labels:
+        app: zigbee2mqtt
+    spec:
+      containers:
+      - image: ghcr.io/koenkk/zigbee2mqtt # < the name of the docker image we will use
+        name: zigbee2mqtt-backend                      # < name of container
+        imagePullPolicy: Always             # < always use the latest image when creating container/pod
+        ports:                              # < the ports required (see container documentation)
+         - containerPort: 8080
+           name: http
+           protocol: TCP
+        volumeMounts:                       # < the volume mount in the container. Look at the relation volumelabel->pvc->pv
+         - mountPath: /app/data               # < mount location in the container
+           name: zigbee2mqtt-data   
+
+      

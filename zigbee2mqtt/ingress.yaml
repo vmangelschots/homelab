@@ -2,18 +2,18 @@
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: mobdamatest-ingress
-  namespace: mobdamatest
+  name: zigbee2mqtt-ingress
+  namespace: zigbee2mqtt
   annotations: 
     kubernetes.io/ingress.class: traefik-external
 spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`mobdamatest.olympus.mangelschots.org`)
+    - match: Host(`zigbee2mqtt.mangelschots.org`)
       kind: Rule
       services:
-        - name: mobdamatest-service
-          port: 5000
+        - name: zigbee2mqtt-service
+          port: 8080
   tls:
-    secretName: mangelschots-org-tls
+    secretName: zigbee2mqtt-mangelschots-org-tls

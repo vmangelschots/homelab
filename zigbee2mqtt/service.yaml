@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: zigbee2mqtt-service    # < name of the service
+  namespace: zigbee2mqtt       # < namespace where place the deployment and pods
+spec:
+  selector:
+    app: zigbee2mqtt           # < reference to the deployment (connects with this deployment)
+  ports:
+    - name: http
+      protocol: TCP
+      port: 8080
