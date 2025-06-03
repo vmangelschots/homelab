@@ -21,7 +21,7 @@ spec:
         app: bwalink
     spec:
       containers:
-      - image: ghcr.io/jshank/bwalink:latest # < the name of the docker image we will use
+      - image: ghcr.io/vmangelschots/bwalink:latest # < the name of the docker image we will use
         name: bwalink                      # < name of container
         imagePullPolicy: Always             # < always use the latest image when creating container/pod
         env:                                # < the environment variables required (see container documentation)
