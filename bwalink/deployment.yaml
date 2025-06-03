@@ -30,4 +30,4 @@ spec:
         - name: BRIDGE_IP
           value: "172.21.2.138" # < user "docker"
         - name: BRIDGE_PORT
-          value: 8899
+          value: '8899'
