@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bwalink        # < name of the deployment
+  namespace: bwalink   # < namespace where place the deployment and pods
+  labels:
+    app: bwalink      # < label for tagging and reference
+spec:
+  replicas: 1           # < number of pods to deploy
+  selector:
+    matchLabels:
+      app: bwalink
+  strategy:
+    rollingUpdate:
+      maxSurge: 0       # < The number of pods that can be created above the desired amount of pods during an update
+      maxUnavailable: 1 # < The number of pods that can be unavailable during the update process
+    type: RollingUpdate # < New pods are added gradually, and old pods are terminated gradually
+  template:
+    metadata:
+      labels:
+        app: bwalink
+    spec:
+      containers:
+      - image: ghcr.io/jshank/bwalink:latest # < the name of the docker image we will use
+        name: bwalink                      # < name of container
+        imagePullPolicy: Always             # < always use the latest image when creating container/pod
+        env:                                # < the environment variables required (see container documentation)
+        - name: MQTT_URI
+          value: "mqtt://balboa:gHwthy5szh!TEZ@172.21.0.3" # < group "user"
+        - name: BRIDGE_IP
+          value: "172.21.2.138" # < user "docker"
+        - name: BRIDGE_PORT
+          value: 8899
