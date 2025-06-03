@@ -31,3 +31,5 @@ spec:
           value: "172.21.2.138" # < user "docker"
         - name: BRIDGE_PORT
           value: '8899'
+        - name: LOG_LEVEL
+          value: 'DEBUG'
