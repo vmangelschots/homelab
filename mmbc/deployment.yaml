@@ -1,15 +1,15 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: MMBC        # < name of the deployment
-  namespace: MMBC   # < namespace where place the deployment and pods
+  name: mmbc        # < name of the deployment
+  namespace: mmbc   # < namespace where place the deployment and pods
   labels:
-    app: MMBC      # < label for tagging and reference
+    app: mmbc      # < label for tagging and reference
 spec:
   replicas: 1           # < number of pods to deploy
   selector:
     matchLabels:
-      app: MMBC
+      app: mmbc
   strategy:
     rollingUpdate:
       maxSurge: 0       # < The number of pods that can be created above the desired amount of pods during an update
@@ -18,11 +18,11 @@ spec:
   template:
     metadata:
       labels:
-        app: MMBC
+        app: mmbc
     spec:
       containers:
-      - image: ghcr.io/vmangelschots/MMBC:latest # < the name of the docker image we will use
-        name: MMBC                      # < name of container
+      - image: ghcr.io/vmangelschots/mmbc:latest # < the name of the docker image we will use
+        name: mmbc                      # < name of container
         imagePullPolicy: Always             # < always use the latest image when creating container/pod
         env:                                # < the environment variables required (see container documentation)
         - name: P1_HOST
