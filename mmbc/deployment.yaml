@@ -28,8 +28,16 @@ spec:
         - name: P1_HOST
           value: "http://172.21.2.226"
         - name: BATTERY_1_IP
-          value: "172.21.0.101" # < user "docker"
+          value: "172.21.0.101" #
         - name: BATTERY_1_ADDRESS
           value: '1'
+        - name: BATTERY_2_IP
+          value: "172.21.0.101" 
+        - name: BATTERY_2_ADDRESS
+          value: '2'
         - name: INTERVAL_SECONDS
           value: '3'
+        - name: MQTT_HOST
+          value: 172.21.0.3
+        - name: MQTT_HA_DISCOVERY
+          value: True
