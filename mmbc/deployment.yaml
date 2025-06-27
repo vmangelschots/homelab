@@ -39,5 +39,3 @@ spec:
           value: '3'
         - name: MQTT_HOST
           value: "172.21.0.3"
-        - name: MQTT_HA_DISCOVERY
-          value: True
