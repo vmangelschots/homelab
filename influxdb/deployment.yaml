@@ -15,8 +15,8 @@ spec:
     spec:
       volumes:
       - name: influxdb-volume
-        persistentVolumeClaim:
-          claimName: iscsi-pvc-influxdb
+        hostPath:
+          path: /mnt/k3s/influxdb # < p
       containers:
       - image: influxdb
         imagePullPolicy: Always
