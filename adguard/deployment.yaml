@@ -14,9 +14,12 @@ spec:
         release: adguard
     spec:
       volumes:
-      - name: adguard-data  # < linkname of the volume for the pvc
+      - name: adguard-data  # 
         hostPath:
-          path: /mnt/k3s/adguard-data # < pvc name we created in the previous yaml
+          path: /mnt/k3s/adguard-data # :
+      - name: adguard-config 
+        hostPath:
+          path: /mnt/k3s/adguard-config
       containers:
       - image: adguard/adguardhome:latest
         imagePullPolicy: Always
