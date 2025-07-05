@@ -9,7 +9,7 @@ spec:
   ports:
     - name: minecraft
       protocol: TCP
-      port: 27015
+      port: 25565
   type: LoadBalancer
   loadBalancerIP: 172.21.3.20
 
