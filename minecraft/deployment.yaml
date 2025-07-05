@@ -44,4 +44,4 @@ spec:
            protocol: TCP
         volumeMounts:                       # < the volume mount in the container. Look at the relation volumelabel->pvc->pv
          - mountPath: /data               # < mount location in the container
-           name: minecraft-data               # < volumelabel configured earlier in the yaml file              # < subfolder in the nfs share to be mounted
+           name: minecraft-data               # < volumelabel configured earlier in the yaml file            
