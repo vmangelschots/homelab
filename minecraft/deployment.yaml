@@ -38,6 +38,8 @@ spec:
           value: "568" # < user "docker"
         - name: TZ
           value: Europe/Brussels
+        - name: EULA
+          value: True
         ports:                              # < the ports required (see container documentation)
          - containerPort: 25565
            name: minecraft
