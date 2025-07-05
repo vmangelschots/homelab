@@ -24,9 +24,7 @@ spec:
       - name: minecraft-data  # < linkname of the volume for the pvc
         hostPath:
           path: /mnt/k3s/minecraft-data # < pvc name we created in the previous yaml
-      - name: heimdall-ssl
-        secret:
-          secretName: olympus-mangelschots-org-tls # < the name ssl certificate, will be created in the ingress yaml
+
       containers:
       - image: itzg/minecraft-server # < the name of the docker image we will use
         name: minecraft                      # < name of container
