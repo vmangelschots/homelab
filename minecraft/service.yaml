@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: minecraft-service    # < name of the service
+  namespace: minecraft       # < namespace where place the deployment and pods
+spec:
+  selector:
+    app: minecraft           # < reference to the deployment (connects with this deployment)
+  ports:
+    - name: minecraft
+      protocol: TCP
+      port: 27015
+  type: LoadBalancer
+  loadBalancerIP: 172.21.3.20
+
