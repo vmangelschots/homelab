@@ -28,7 +28,7 @@ spec:
               name: pg
           volumeMounts:
           - name: data
-          mountPath: /bitnami/postgresql
+            mountPath: /bitnami/postgresql
   volumes:
     - name: data
       hostPath:
