@@ -27,8 +27,8 @@ spec:
             - containerPort: 5432
               name: pg
           volumeMounts:
-          - name: data
-            mountPath: /bitnami/postgresql
+            - name: data
+              mountPath: /bitnami/postgresql
     volumes:
       - name: data
         hostPath:
