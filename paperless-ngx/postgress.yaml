@@ -29,10 +29,10 @@ spec:
           volumeMounts:
             - name: data
               mountPath: /bitnami/postgresql
-    volumes:
-      - name: data
-        hostPath:
-          path: /mnt/k3s/paperlessngx-postgress-data
+      volumes:
+        - name: data
+          hostPath:
+            path: /mnt/k3s/paperlessngx-postgress-data
 
 ---
 apiVersion: v1
