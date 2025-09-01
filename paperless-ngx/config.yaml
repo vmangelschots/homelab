@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: paperless-config
+  namespace: paperless
+data:
+  TZ: Europe/Brussels
+  PAPERLESS_TIME_ZONE: Europe/Brussels
+  PAPERLESS_URL: https://paperless.mangelschots.org
+  PAPERLESS_OCR_LANGUAGE: eng+nld
+  PAPERLESS_OCR_LANGUAGES: "eng nld"
+  PAPERLESS_OCR_MODE: skip
+  PAPERLESS_DBENGINE: postgresql
+  # Tika/Gotenberg endpoints (used if those Deployments are enabled)
+  PAPERLESS_TIKA_ENABLED: "true"
+  PAPERLESS_TIKA_ENDPOINT: http://tika:9998
+  PAPERLESS_TIKA_GOTENBERG_ENDPOINT: http://gotenberg:3000

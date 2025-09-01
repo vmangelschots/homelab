@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: redis
+  namespace: paperless
+spec:
+  serviceName: redis
+  replicas: 1
+  selector:
+    matchLabels: { app: redis }
+  template:
+    metadata:
+      labels: { app: redis }
+    spec:
+      containers:
+        - name: redis
+          image: bitnami/redis:7.2
+          imagePullPolicy: always
+          env:
+            - name: ALLOW_EMPTY_PASSWORD
+              value: "yes"
+          ports:
+            - containerPort: 6379
+              name: redis
+          volumeMounts:
+            - name: data
+              mountPath: /bitnami/redis/data
+      volumes:
+        - name: data
+          hostPath:
+          path: /mnt/k3s/paperlessngx-redis-data 
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis
+  namespace: paperless
+spec:
+  selector: { app: redis }
+  ports:
+    - name: redis
+      port: 6379
+      targetPort: 6379
+

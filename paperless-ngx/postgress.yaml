@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: postgres
+  namespace: paperless
+spec:
+  serviceName: postgres
+  replicas: 1
+  selector:
+    matchLabels: { app: postgres }
+  template:
+    metadata:
+      labels: { app: postgres }
+    spec:
+      containers:
+        - name: postgres
+          image: bitnami/postgresql:16
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: POSTGRESQL_USERNAME
+              valueFrom: { secretKeyRef: { name: paperless-secrets, key: POSTGRES_USER } }
+            - name: POSTGRESQL_PASSWORD
+              valueFrom: { secretKeyRef: { name: paperless-secrets, key: POSTGRES_PASSWORD } }
+            - name: POSTGRESQL_DATABASE
+              valueFrom: { secretKeyRef: { name: paperless-secrets, key: POSTGRES_DB } }
+          ports:
+            - containerPort: 5432
+              name: pg
+          volumeMounts:
+          - name: data
+          mountPath: /bitnami/postgresql
+  volumes:
+    - name: data
+      hostPath:
+        path: /mnt/k3s/paperlessngx-postgress-data
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+  namespace: paperless
+spec:
+  selector: { app: postgres }
+  ports:
+    - name: pg
+    port: 5432
+    targetPort: 5432
