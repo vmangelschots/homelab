@@ -17,6 +17,8 @@ spec:
           image: bitnami/postgresql:16
           imagePullPolicy: IfNotPresent
           env:
+            - name: BINAME_DEBUG
+              value: true
             - name: POSTGRESQL_USERNAME
               valueFrom: { secretKeyRef: { name: paperless-secrets, key: POSTGRES_USER } }
             - name: POSTGRESQL_PASSWORD
